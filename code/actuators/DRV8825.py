@@ -37,7 +37,7 @@ class DRV8825:
     def deactivate_stepper(self):
         GPIO.output(self.SLP, GPIO.LOW)
 
-    def run_continuously(self, dutycycle=128, frequency=500):
+    def run_continuously(self, dutycycle=128, frequency=320):
         self.activate_stepper()
         self.pi.set_PWM_dutycycle(self.STEP, dutycycle)
         self.pi.set_PWM_frequency(self.STEP, frequency)
