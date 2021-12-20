@@ -1,12 +1,13 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-DIR = 12   # Direction GPIO Pin
-STEP = 25  # Step GPIO Pin
+DIR = 27  # 12   # Direction GPIO Pin
+STEP = 17  # 25  # Step GPIO Pin
 CW = 1     # Clockwise Rotation
 CCW = 0    # Counterclockwise Rotation
 SPR = 200   # Steps per Revolution (360 / 1.8) (1,8° per step (oruoff))
-STEPPER_ACTIVATION_PIN = 24  # If set to Low, there is no holding torque on the motor
+# 24  # If set to Low, there is no holding torque on the motor
+STEPPER_ACTIVATION_PIN = 4
 
 
 GPIO.setmode(GPIO.BCM)
