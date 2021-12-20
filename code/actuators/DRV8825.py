@@ -38,10 +38,13 @@ class DRV8825:
         GPIO.output(self.SLP, GPIO.LOW)
 
     def run_continuously(self, dutycycle=128, frequency=500):
+        self.activate_stepper()
         self.pi.set_PWM_dutycycle(self.STEP, dutycycle)
         self.pi.set_PWM_frequency(self.STEP, frequency)
+        self.deactivate_stepper()
 
     def stop_continuous(self):
+        self.deactivate_stepper()
         self.pi.set_PWM_dutycycle(self.STEP, 0)
 
     def set_direction(self, clockwise=True):
