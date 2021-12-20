@@ -41,7 +41,6 @@ class DRV8825:
         self.activate_stepper()
         self.pi.set_PWM_dutycycle(self.STEP, dutycycle)
         self.pi.set_PWM_frequency(self.STEP, frequency)
-        self.deactivate_stepper()
 
     def stop_continuous(self):
         self.deactivate_stepper()
