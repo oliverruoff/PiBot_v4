@@ -16,16 +16,31 @@ left_Stepper.run_continuously()
 right_Stepper.run_continuously()
 
 time.sleep(1)
+left_Stepper.stop_continuous()
+right_Stepper.stop_continuous()
+time.sleep(1)
+left_Stepper.run_continuously()
+right_Stepper.run_continuously()
 
 left_Stepper.set_direction(clockwise=True)
 right_Stepper.set_direction(clockwise=False)
 
 time.sleep(1)
+left_Stepper.stop_continuous()
+right_Stepper.stop_continuous()
+time.sleep(1)
+left_Stepper.run_continuously()
+right_Stepper.run_continuously()
 
 left_Stepper.set_direction(clockwise=True)
 right_Stepper.set_direction(clockwise=True)
 
 time.sleep(1)
+left_Stepper.stop_continuous()
+right_Stepper.stop_continuous()
+time.sleep(1)
+left_Stepper.run_continuously()
+right_Stepper.run_continuously()
 
 left_Stepper.set_direction(clockwise=False)
 right_Stepper.set_direction(clockwise=False)
