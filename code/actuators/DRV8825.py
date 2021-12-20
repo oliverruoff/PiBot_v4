@@ -1,5 +1,6 @@
 from time import sleep
 import RPi.GPIO as GPIO
+import pigpio
 
 CW = 1     # Clockwise Rotation
 CCW = 0    # Counterclockwise Rotation
@@ -18,6 +19,10 @@ class DRV8825:
         self.stepper_delay = stepper_delay
         self.gpio_mode = gpio_mode
 
+        self.pi = pigpio.pi()
+
+        self.direction = CW
+
         GPIO.setmode(gpio_mode)
 
         GPIO.setup(self.DIR, GPIO.OUT)
@@ -26,12 +31,19 @@ class DRV8825:
 
         GPIO.output(DIR, CW)
 
-    def turn_stepper(self, degree, clockwise=True):
+    def run_continuously(self, dutycycle=128, frequency=500):
+        self.pi.set_PWM_dutycycle(self.STEP, dutycycle)
+        self.pi.set_PWM_frequency(self.STEP, frequency)
+
+    def stop_continuous(self):
+        self.pi.set_PWM_dutycycle(self.STEP, 0)
+
+    def set_direction(self, clockwise=True):
+        self.direction = CW if clockwise else CCW
+
+    def turn_stepper(self, degree):
         GPIO.output(self.SLP, GPIO.HIGH)
-        direction = CCW
-        if clockwise:
-            direction = CW
-        GPIO.output(self.DIR, direction)
+        GPIO.output(self.DIR, self.direction)
         for _ in range(int(self.SPR/360*degree)):
             GPIO.output(self.STEP, GPIO.HIGH)
             sleep(self.stepper_delay)
