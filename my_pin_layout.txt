@@ -1,0 +1,15 @@
+Switch:
+
+GPIO 23
+
+Stepper rechts:
+
+SLP = GPIO 24
+STEP = GPIO 25
+DIR= GPIO 12
+
+Stepper links:
+
+SLP = GPIO 4
+STEP = GPIO 17
+DIR = GPIO 27
