@@ -45,5 +45,7 @@ right_Stepper.run_continuously()
 left_Stepper.set_direction(clockwise=False)
 right_Stepper.set_direction(clockwise=False)
 
+time.sleep(1)
+
 left_Stepper.stop_continuous()
 right_Stepper.stop_continuous()
