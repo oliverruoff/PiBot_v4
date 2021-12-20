@@ -31,6 +31,12 @@ class DRV8825:
 
         GPIO.output(DIR, CW)
 
+    def activate_stepper(self):
+        GPIO.output(self.SLP, GPIO.HIGH)
+
+    def deactivate_stepper(self):
+        GPIO.output(self.SLP, GPIO.LOW)
+
     def run_continuously(self, dutycycle=128, frequency=500):
         self.pi.set_PWM_dutycycle(self.STEP, dutycycle)
         self.pi.set_PWM_frequency(self.STEP, frequency)
@@ -40,13 +46,13 @@ class DRV8825:
 
     def set_direction(self, clockwise=True):
         self.direction = CW if clockwise else CCW
+        GPIO.output(self.DIR, self.direction)
 
     def turn_stepper(self, degree):
-        GPIO.output(self.SLP, GPIO.HIGH)
-        GPIO.output(self.DIR, self.direction)
+        self.activate_stepper()
         for _ in range(int(self.SPR/360*degree)):
             GPIO.output(self.STEP, GPIO.HIGH)
             sleep(self.stepper_delay)
             GPIO.output(self.STEP, GPIO.LOW)
             sleep(self.stepper_delay)
-        GPIO.output(self.SLP, GPIO.LOW)
+        self.deactivate_stepper()
