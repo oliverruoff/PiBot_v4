@@ -1,6 +1,7 @@
 import time
 
 from actuators import DRV8825, ULN2003
+from sensors import TFLUNA
 
 
 left_stepper = DRV8825.DRV8825(
@@ -10,6 +11,12 @@ right_stepper = DRV8825.DRV8825(
     DIR=12, STEP=25, SLP=24, steps_per_revolution=200)
 
 top_stepper = ULN2003.ULN2003(21, 20, 16, 26)
+
+tf_luna = TFLUNA.TFLuna()
+
+while(True):
+    print(tf_luna.read_distance())
+    time.sleep(0.5)
 
 top_stepper.turn_stepper_angle(360, True)
 
