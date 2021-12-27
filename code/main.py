@@ -1,5 +1,3 @@
-import time
-
 from actuators import DRV8825, ULN2003
 from sensors import TFLUNA
 from routines import test_all
