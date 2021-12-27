@@ -7,3 +7,4 @@ A small roboter based on a raspberry pi zero w, using lidar for locating.
 - Start pigpio demon on boot
     - `sudo systemctl enable pigpiod`
     - `sudo systemctl start pigpiod`
+- Enable serial mode P6 in interacing options (`sudo raspi-config`)
