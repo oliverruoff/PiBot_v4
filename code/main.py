@@ -16,7 +16,9 @@ top_stepper = ULN2003.ULN2003(21, 20, 16, 26)
 tf_luna = TFLUNA.TFLuna()
 
 while True:
-    tf_luna.read_distance()
+    tfluna_data = tf_luna.read_tfluna_data()
+    print('TFLuna data --> Distance:',
+          tfluna_data[0], '| Signal Strength:', tfluna_data[1], '| Sensor Temperatur:', tfluna_data[2])
     sleep(0.5)
 
 test_all.test_top_stepper_and_bottom_steppers(

@@ -6,20 +6,15 @@ class TFLuna:
     def __init__(self):
         # mini UART serial device
         self.ser = serial.Serial("/dev/serial0", 115200, timeout=0)
-        print('1')
         if self.ser.isOpen() == False:
             self.ser.open()  # open serial port if not open
-        print('2')
 
     def read_tfluna_data(self):
         while True:
             counter = self.ser.in_waiting  # count the number of bytes of the serial port
-            print('3')
             if counter > 8:
                 bytes_serial = self.ser.read(9)  # read 9 bytes
-                print('4')
                 self.ser.reset_input_buffer()  # reset buffer
-                print('5')
                 # distance in next two bytes
                 distance = bytes_serial[2] + bytes_serial[3]*256
                 # signal strength in next two bytes
