@@ -1,5 +1,5 @@
 from actuators import DRV8825, ULN2003
-from sensors import TFLUNA
+# from sensors import TFLUNA
 from routines import test_all
 
 left_stepper = DRV8825.DRV8825(
