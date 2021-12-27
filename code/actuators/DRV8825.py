@@ -31,6 +31,9 @@ class DRV8825:
 
         GPIO.output(DIR, CW)
 
+    def set_stepper_delay(self, stepper_delay):
+        self.stepper_delay = stepper_delay
+
     def activate_stepper(self):
         GPIO.output(self.SLP, GPIO.HIGH)
 
