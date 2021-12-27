@@ -10,7 +10,7 @@ right_stepper = DRV8825.DRV8825(
 
 top_stepper = ULN2003.ULN2003(21, 20, 16, 26)
 
-tf_luna = TFLUNA.TFLuna()
+# tf_luna = TFLUNA.TFLuna()
 
 test_all.test_top_stepper_and_bottom_steppers(
     top_stepper, left_stepper, right_stepper)
