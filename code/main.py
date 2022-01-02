@@ -4,14 +4,17 @@ from actuators import DRV8825, ULN2003
 from sensors import TFLUNA
 from routines import test_all
 
+import RPi.GPIO as GPIO
+
 
 left_stepper = DRV8825.DRV8825(
-    DIR=27, STEP=17, SLP=4, steps_per_revolution=200)
+    DIR=27, STEP=17, SLP=4, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
 right_stepper = DRV8825.DRV8825(
-    DIR=12, STEP=25, SLP=24, steps_per_revolution=200)
+    DIR=12, STEP=25, SLP=24, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
-top_stepper = ULN2003.ULN2003(21, 20, 16, 26)
+top_stepper = ULN2003.ULN2003(
+    IN1=21, IN2=20, IN3=16, IN4=26, gpio_mode=GPIO.BCM)
 
 tf_luna = TFLUNA.TFLuna()
 
