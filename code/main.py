@@ -19,7 +19,7 @@ top_stepper = ULN2003.ULN2003(
 
 tf_luna = TFLUNA.TFLuna()
 
-lidar.scan_360(top_stepper, tf_luna)
+print(lidar.scan_360(top_stepper, tf_luna))
 
 # while True:
 #    tfluna_data = tf_luna.read_tfluna_data()
