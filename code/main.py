@@ -3,6 +3,7 @@ from time import sleep
 from actuators import DRV8825, ULN2003
 from sensors import TFLUNA
 from routines import test_all
+import lidar
 
 import RPi.GPIO as GPIO
 
@@ -18,11 +19,13 @@ top_stepper = ULN2003.ULN2003(
 
 tf_luna = TFLUNA.TFLuna()
 
-while True:
-    tfluna_data = tf_luna.read_tfluna_data()
-    print('TFLuna data --> Distance:',
-          tfluna_data[0], '| Signal Strength:', tfluna_data[1], '| Sensor Temperatur:', tfluna_data[2])
-    sleep(0.5)
+lidar.scan_360(top_stepper, tf_luna)
 
-test_all.test_top_stepper_and_bottom_steppers(
-    top_stepper, left_stepper, right_stepper)
+# while True:
+#    tfluna_data = tf_luna.read_tfluna_data()
+#    print('TFLuna data --> Distance:',
+#          tfluna_data[0], '| Signal Strength:', tfluna_data[1], '| Sensor Temperatur:', tfluna_data[2])
+#    sleep(0.5)
+
+# test_all.test_top_stepper_and_bottom_steppers(
+#    top_stepper, left_stepper, right_stepper)
