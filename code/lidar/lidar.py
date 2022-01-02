@@ -14,12 +14,14 @@ def get_coord(angle, distance, log=False):
 def scan_360(stepper, tfluna, clockwise=True):
     stepper.set_direction(clockwise)
     env_map = []
-    for angle in range(360):
+    angle = 0
+    for i in range(512):
         distance = tfluna.read_distance()
+        angle += 360/512
         radians_angle = math.radians(angle)
         env_map.append(get_coord(radians_angle, distance))
-        stepper.turn_stepper_angle(1)
+        stepper.run_stepper(1)
     reverse_direction = not clockwise
     stepper.set_direction(reverse_direction)
-    stepper.turn_stepper_angle(360)
+    stepper.run_stepper(512)
     return env_map
