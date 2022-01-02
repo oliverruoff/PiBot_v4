@@ -8,7 +8,7 @@ def get_coord(angle, distance, log=False):
               '*', distance, '=', math.sin(angle)*distance)
         print('>>>cos(', angle, ') =', math.cos(angle),
               '*', distance, '=', math.cos(angle)*distance)
-    return math.sin(angle)*distance, math.cos(angle)*distance
+    return round(math.sin(angle)*distance, 2), round(math.cos(angle)*distance, 2)
 
 
 def scan_360(stepper, tfluna, clockwise=True):
