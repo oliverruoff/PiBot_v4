@@ -12,10 +12,10 @@ class TFLuna:
             self.ser.open()  # open serial port if not open
 
     def read_tfluna_data(self):
-        """Reads the sensor data and returns distance (in cm), signal strength and sensor temperature.
+        """Reads the sensor data and returns distance (in m), signal strength and sensor temperature.
 
         Returns:
-            list: Distance in cm, signal strength, Temperature in °C.
+            list: Distance in m, signal strength, Temperature in °C.
         """
         if self.ser.isOpen() == False:
             self.ser.open()  # open serial port if not open
@@ -37,9 +37,9 @@ class TFLuna:
 
     def read_distance(self):
         """Wraps around function `read_tfluna_data`, crops away all return values, but distance.
-        Returns the distance in cm. 
+        Returns the distance in m. 
 
         Returns:
-            int: Distance in cm.
+            int: Distance in m.
         """
         return self.read_tfluna_data()[0]

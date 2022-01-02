@@ -8,7 +8,7 @@ def get_coord(angle, distance, log=False):
               '*', distance, '=', math.sin(angle)*distance)
         print('>>>cos(', angle, ') =', math.cos(angle),
               '*', distance, '=', math.cos(angle)*distance)
-    return round(math.sin(angle)*distance), round(math.cos(angle)*distance)
+    return math.sin(angle)*distance, math.cos(angle)*distance
 
 
 def scan_360(stepper, tfluna, clockwise=True):
@@ -16,7 +16,7 @@ def scan_360(stepper, tfluna, clockwise=True):
     env_map = []
     angle = 0
     for i in range(512):
-        distance = tfluna.read_distance()
+        distance = tfluna.read_distance() * 100  # converting to cm
         print('Measured distance:', distance)
         angle += 360/512
         print('Current angle:', angle)
