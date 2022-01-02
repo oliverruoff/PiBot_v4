@@ -3,6 +3,9 @@ A small roboter based on a raspberry pi zero w, using lidar for locating.
 
 ![Picture](docs/3d_real.png)
 
+## First scans with the lidar
+
+![lidar test](docs/lidar_test.png)
 ## Setup
 
 - Install python packages from requirements.txt
