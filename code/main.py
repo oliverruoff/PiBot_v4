@@ -3,7 +3,7 @@ from time import sleep
 from actuators import DRV8825, ULN2003
 from sensors import TFLUNA
 from routines import test_all
-import lidar
+from lidar import lidar
 
 import RPi.GPIO as GPIO
 
