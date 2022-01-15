@@ -30,7 +30,10 @@ tf_luna = TFLUNA.TFLuna()
 right_stepper.activate_stepper()
 left_stepper.turn_stepper(1656)
 left_stepper.activate_stepper()
+sleep(2)
 right_stepper.turn_stepper(1656)
+right_stepper.activate_stepper()
+sleep(2)
 
 # test_all.test_top_stepper_and_bottom_steppers(
 #    top_stepper, left_stepper, right_stepper)
