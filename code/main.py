@@ -19,13 +19,14 @@ top_stepper = ULN2003.ULN2003(
 
 tf_luna = TFLUNA.TFLuna()
 
-# print(lidar.scan_360(top_stepper, tf_luna))
-
+print(lidar.scan_360(top_stepper, tf_luna))
+exit()
+#
 # while True:
-#    tfluna_data = tf_luna.read_tfluna_data()
-#    print('TFLuna data --> Distance:',
-#          tfluna_data[0], '| Signal Strength:', tfluna_data[1], '| Sensor Temperatur:', tfluna_data[2])
-#    sleep(0.5)
+#   tfluna_data = tf_luna.read_tfluna_data()
+#   print('TFLuna data --> Distance:',
+#         tfluna_data[0], '| Signal Strength:', tfluna_data[1], '| Sensor Temperatur:', tfluna_data[2])
+#   sleep(0.5)
 
 right_stepper.activate_stepper()
 left_stepper.turn_stepper(1656)
