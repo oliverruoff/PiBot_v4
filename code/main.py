@@ -30,7 +30,7 @@ tf_luna = TFLUNA.TFLuna()
 left_stepper.set_stepper_delay(0.005)
 left_stepper.turn_stepper(360)
 
-right_stepper.set_stepper_delay(0.01)
+right_stepper.set_stepper_delay(0.002)
 right_stepper.turn_stepper(360)
 
 # test_all.test_top_stepper_and_bottom_steppers(
