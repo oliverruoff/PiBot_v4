@@ -27,7 +27,7 @@ tf_luna = TFLUNA.TFLuna()
 #          tfluna_data[0], '| Signal Strength:', tfluna_data[1], '| Sensor Temperatur:', tfluna_data[2])
 #    sleep(0.5)
 
-left_stepper.set_stepper_delay(0.005)
+left_stepper.set_stepper_delay(0.003)
 left_stepper.turn_stepper(360)
 
 right_stepper.set_stepper_delay(0.002)
