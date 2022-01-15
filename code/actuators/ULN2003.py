@@ -30,7 +30,7 @@ class ULN2003:
 
         self.direction_clockwise = True
 
-    def run_stepper(self, steps, stepper_delay=0.001):
+    def run_stepper(self, steps, stepper_delay=0.002):
         """Runs the stepper motor for the given number of steps.
         Note, that "clockwise" depends on pin setup.
         512 steps == 1 round.
