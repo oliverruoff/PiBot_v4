@@ -92,7 +92,7 @@ class DRV8825:
         self.activate_stepper()
         for _ in range(int(self.SPR/360*degree)):
             GPIO.output(self.STEP, GPIO.HIGH)
-            sleep(self.stepper_delay)
+            sleep(self.stepper_delay_seconds)
             GPIO.output(self.STEP, GPIO.LOW)
-            sleep(self.stepper_delay)
+            sleep(self.stepper_delay_seconds)
         self.deactivate_stepper()
