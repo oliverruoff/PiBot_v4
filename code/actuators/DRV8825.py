@@ -121,7 +121,7 @@ class DRV8825:
         for i in range(steps):
             if ramp_up:
                 if i < one_third_steps:
-                    delay = delay / 1.05
+                    delay = delay / 1.1
                 else:
                     delay = self.stepper_delay_seconds
             print('delay:', self.stepper_delay_seconds + delay)
