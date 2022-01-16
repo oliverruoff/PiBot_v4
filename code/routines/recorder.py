@@ -1,5 +1,5 @@
 def record(left_stepper, right_stepper):
-    input__ = ""
+    input_ = ""
     while input_ is not "z":
         input_ = input("Move >> ")
         if input_ == "w":
