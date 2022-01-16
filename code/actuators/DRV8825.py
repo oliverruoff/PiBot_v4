@@ -1,4 +1,6 @@
 from time import sleep
+import threading
+
 import RPi.GPIO as GPIO
 import pigpio
 
@@ -83,8 +85,27 @@ class DRV8825:
         self.direction = CW if clockwise else CCW
         GPIO.output(self.DIR, self.direction)
 
-    def turn_stepper(self, degree):
+    def turn_stepper_angle(self, degree, asynch):
+        """Turns the stepper for a precise angle. Can be called
+        either synchronous or asynchronously.
+
+        Args:
+            degree (int): The angle in degree, on how much the stepper will
+            rotate.
+            asynch (bool): Flag whether this function (and therefore the motor), will turn
+            synchronously or asynchronously.
+        """
+        if (asynch):
+            thread = threading.Thread(
+                target=self._turn_stepper, args=(degree), kwargs={})
+            thread.start()
+        else:
+            self._turn_stepper(degree)
+
+    def _turn_stepper(self, degree):
         """This function is for turning the stepper for a precise angle.
+        This function should be called with the `turn_stepper_angle` function,
+        defining whether the function should run synchronously or asynchronously.
 
         Args:
             degree (int): The angle in degree, on how much the stepper will rotate.
