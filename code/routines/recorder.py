@@ -32,6 +32,9 @@ def record(left_stepper, right_stepper):
         elif input_ == "k":
             recorded_movement.append("k")
             play_movement(left_stepper, right_stepper, "w")
+        elif input_ == "r":
+            recorded_movement = []
+            print("Resetted recorded list.")
         elif input_ == "m":
             json_movement_list = json.dumps(recorded_movement)
             with open("saved_movement.json", "w") as text_file:
