@@ -125,9 +125,6 @@ class DRV8825:
                 if i < ramp_steps:
                     print(i, "ramping up")
                     delay -= (1/ramp_steps) * max_delay
-                else:
-                    print(i, "ramping off")
-                    delay = 0
             if ramp_down:
                 if i > steps - ramp_steps:
                     print(i, "ramping down")
