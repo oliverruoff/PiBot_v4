@@ -119,7 +119,7 @@ class DRV8825:
         ramp_size = 5
         ramp_steps = steps / ramp_size
         max_delay = self.stepper_delay_seconds * 20
-        delay = self.stepper_delay_seconds
+        delay = 0
         if ramp_up:
             delay = max_delay
         for i in range(steps):
