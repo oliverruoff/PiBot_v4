@@ -70,7 +70,7 @@ class DRV8825:
         self.pi.set_PWM_frequency(self.STEP, frequency)
 
     def stop_continuous(self):
-        """Stops the continuous turning of the stepper. Also deactivates it, thus 
+        """Stops the continuous turning of the stepper. Also deactivates it, thus
         releasing holding torque.
         """
         self.deactivate_stepper()
@@ -113,17 +113,19 @@ class DRV8825:
         """
         self.activate_stepper()
         steps = int(self.SPR/360*degree)
-        one_third_steps = steps / 3
+        # means 1/5 of the beginning steps will be ramp up phase and the last 1/5 of the steps is ramp down phase
+        ramp_size = 3
+        ramp_steps = steps / ramp_size
         max_delay = self.stepper_delay_seconds * 10
         delay = self.stepper_delay_seconds
         if ramp_up:
             delay = max_delay
         for i in range(steps):
             if ramp_up:
-                if i < one_third_steps:
-                    delay = delay / (1 - ((1/30) * max_delay))
-                if i > 2 * one_third_steps:
-                    delay = delay + ((1/30) * max_delay)
+                if i < ramp_steps:
+                    delay = delay - ((1/ramp_steps) * max_delay)
+                if i > steps - ramp_steps:
+                    delay = delay + ((1/ramp_steps) * max_delay)
                 else:
                     delay = 0
             print('delay:', self.stepper_delay_seconds + delay)
