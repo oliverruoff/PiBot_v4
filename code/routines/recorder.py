@@ -43,7 +43,7 @@ def record(left_stepper, right_stepper):
             print(recorded_movement)
         elif input_ == "l":
             with open('saved_movement.json', 'r') as file:
-                recorded_movement = file.read()
+                recorded_movement = json.loads(file.read())
             print("Loaded list:")
             print(recorded_movement)
         elif input_ == "p":
