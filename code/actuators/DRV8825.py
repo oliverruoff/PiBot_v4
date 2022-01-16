@@ -103,7 +103,7 @@ class DRV8825:
         else:
             self._turn_stepper(degree)
 
-    def _turn_stepper(self, degree):
+    def _turn_stepper(self, degree, ramp_up=True, ramp_down=True):
         """This function is for turning the stepper for a precise angle.
         This function should be called with the `turn_stepper_angle` function,
         defining whether the function should run synchronously or asynchronously.
@@ -112,9 +112,19 @@ class DRV8825:
             degree (int): The angle in degree, on how much the stepper will rotate.
         """
         self.activate_stepper()
-        for _ in range(int(self.SPR/360*degree)):
+        steps = int(self.SPR/360*degree)
+        one_third_steps = steps / 3
+        max_delay = self.stepper_delay_seconds * 5
+        delay = self.stepper_delay_seconds
+        if ramp_up:
+            delay = max_delay + self.stepper_delay_seconds
+        for i in range(steps):
+            if ramp_up:
+                if i < one_third_steps:
+                    delay = self.stepper_delay_seconds + delay / 2
+            print('delay:', delay)
             GPIO.output(self.STEP, GPIO.HIGH)
-            sleep(self.stepper_delay_seconds)
+            sleep(delay)
             GPIO.output(self.STEP, GPIO.LOW)
-            sleep(self.stepper_delay_seconds)
+            sleep(delay)
         self.deactivate_stepper()
