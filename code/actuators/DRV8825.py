@@ -1,3 +1,4 @@
+from multiprocessing.connection import wait
 from time import sleep
 import threading
 
@@ -85,20 +86,23 @@ class DRV8825:
         self.direction = CW if clockwise else CCW
         GPIO.output(self.DIR, self.direction)
 
-    def turn_stepper_angle(self, degree, asynch):
+    def turn_stepper_angle(self, degree, asynch, wait_for_thread=False):
         """Turns the stepper for a precise angle. Can be called
         either synchronous or asynchronously.
 
         Args:
             degree (int): The angle in degree, on how much the stepper will
             rotate.
-            asynch (bool): Flag whether this function (and therefore the motor), will turn
+            asynch (bool): Flag wheather this function (and therefore the motor), will turn
             synchronously or asynchronously.
+            wait_for_thread (bool): Flag wheather the function should wait until movement is done.
         """
         if (asynch):
             thread = threading.Thread(
                 target=self._turn_stepper, args=([degree]), kwargs={})
             thread.start()
+            if wait_for_thread:
+                thread.join()
         else:
             self._turn_stepper(degree)
 
