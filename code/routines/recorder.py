@@ -31,7 +31,7 @@ def record(left_stepper, right_stepper):
             play_movement(left_stepper, right_stepper, "h")
         elif input_ == "k":
             recorded_movement.append("k")
-            play_movement(left_stepper, right_stepper, "w")
+            play_movement(left_stepper, right_stepper, "k")
         elif input_ == "r":
             recorded_movement = []
             print("Resetted recorded list.")
