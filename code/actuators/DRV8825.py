@@ -97,7 +97,7 @@ class DRV8825:
         """
         if (asynch):
             thread = threading.Thread(
-                target=self._turn_stepper, args=(degree), kwargs={})
+                target=self._turn_stepper, args=([degree]), kwargs={})
             thread.start()
         else:
             self._turn_stepper(degree)
