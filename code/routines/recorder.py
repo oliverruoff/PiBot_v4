@@ -4,6 +4,7 @@ recorded_movement = []
 
 
 def record(left_stepper, right_stepper):
+    recorded_movement = []
     input_ = ""
     while True:
         input_ = input("Move >> ")
