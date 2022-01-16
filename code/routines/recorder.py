@@ -1,5 +1,4 @@
 import json
-from turtle import left
 
 recorded_movement = []
 
