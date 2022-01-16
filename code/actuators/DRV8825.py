@@ -110,6 +110,8 @@ class DRV8825:
 
         Args:
             degree (int): The angle in degree, on how much the stepper will rotate.
+            ramp_up (bool): Defines wheather the stepper should ramp up the movement.
+            ramp_down (bool): Defines wheather the stepper should ramp down the movement.
         """
         self.activate_stepper()
         steps = int(self.SPR/360*degree)
