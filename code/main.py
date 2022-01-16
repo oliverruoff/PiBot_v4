@@ -1,8 +1,9 @@
 from time import sleep
 
 from actuators import DRV8825, ULN2003
+from code.routines.recorder import record
 from sensors import TFLUNA
-from routines import test_all
+from routines import test_all, recorder
 from lidar import lidar
 
 import RPi.GPIO as GPIO
@@ -19,6 +20,8 @@ top_stepper = ULN2003.ULN2003(
 
 tf_luna = TFLUNA.TFLuna()
 
+recorder.record(left_stepper, right_stepper)
+
 # print(lidar.scan_360(top_stepper, tf_luna))
 
 #
@@ -29,8 +32,8 @@ tf_luna = TFLUNA.TFLuna()
 #   sleep(0.5)
 
 
-left_stepper.turn_stepper_angle(828, True)
-right_stepper.turn_stepper_angle(828, True)
+# left_stepper.turn_stepper_angle(828, True)
+# right_stepper.turn_stepper_angle(828, True)
 
 # test_all.test_top_stepper_and_bottom_steppers(
 #    top_stepper, left_stepper, right_stepper)
