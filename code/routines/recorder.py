@@ -22,3 +22,5 @@ def record(left_stepper, right_stepper):
             right_stepper.set_direction(False)
             left_stepper.turn_stepper_angle(207, True)
             right_stepper.turn_stepper_angle(207, True)
+        left_stepper.activate_stepper()
+        right_stepper.activate_stepper()
