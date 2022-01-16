@@ -114,20 +114,22 @@ class DRV8825:
         self.activate_stepper()
         steps = int(self.SPR/360*degree)
         # means 1/5 of the beginning steps will be ramp up phase and the last 1/5 of the steps is ramp down phase
-        ramp_size = 3
+        ramp_size = 4
         ramp_steps = steps / ramp_size
         max_delay = self.stepper_delay_seconds * 10
         delay = self.stepper_delay_seconds
         if ramp_up:
             delay = max_delay
         for i in range(steps):
+            print("i:", i, "ramp_steps:", ramp_steps)
             if ramp_up:
                 if i < ramp_steps:
                     delay = delay - ((1/ramp_steps) * max_delay)
-                if i > steps - ramp_steps:
-                    delay = delay + ((1/ramp_steps) * max_delay)
                 else:
                     delay = 0
+            if ramp_down:
+                if i > steps - ramp_steps:
+                    delay = delay + ((1/ramp_steps) * max_delay)
             print('delay:', self.stepper_delay_seconds + delay)
             GPIO.output(self.STEP, GPIO.HIGH)
             sleep(self.stepper_delay_seconds + delay)
