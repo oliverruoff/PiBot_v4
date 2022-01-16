@@ -14,7 +14,7 @@ class DRV8825:
         common bigger stepper motors.
         """
 
-    def __init__(self, DIR, STEP, SLP, steps_per_revolution, stepper_delay_seconds=.0002, gpio_mode=GPIO.BCM):
+    def __init__(self, DIR, STEP, SLP, steps_per_revolution, stepper_delay_seconds=.0005, gpio_mode=GPIO.BCM):
         self.DIR = DIR
         self.STEP = STEP
         # If set to Low, there is no holding torque on the motor
@@ -116,7 +116,7 @@ class DRV8825:
         # means 1/5 of the beginning steps will be ramp up phase and the last 1/5 of the steps is ramp down phase
         ramp_size = 4
         ramp_steps = steps / ramp_size
-        max_delay = self.stepper_delay_seconds * 20
+        max_delay = self.stepper_delay_seconds * 30
         delay = self.stepper_delay_seconds
         if ramp_up:
             delay = max_delay
