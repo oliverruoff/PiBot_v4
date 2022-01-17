@@ -20,11 +20,11 @@ def scan_360(stepper, tfluna):
 def _scan_360(stepper, tfluna, clockwise=True):
     stepper.set_direction(clockwise)
     env_map = []
-    angle = 0
+    angle = 0 if clockwise else 360
     for i in range(512):
         distance = tfluna.read_distance() * 100  # converting to cm
         print('Measured distance:', distance)
-        angle += 360/512
+        angle = angle + 360/512 if clockwise else angle - 360/512
         print('Current angle:', angle)
         radians_angle = math.radians(angle)
         env_map.append(get_coord(radians_angle, distance))
