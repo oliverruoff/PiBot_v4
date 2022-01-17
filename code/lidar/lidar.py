@@ -35,6 +35,6 @@ def _scan_360(stepper, tfluna, clockwise=True):
         angle = angle + 360/512 if clockwise else angle - 360/512
         print('Current angle:', angle)
         radians_angle = math.radians(angle)
-        env_map.append(get_coord(radians_angle, distance))
+        env_map.append(get_coord(radians_angle, distance) + (distance, angle))
         stepper.run_stepper(1)
     return env_map

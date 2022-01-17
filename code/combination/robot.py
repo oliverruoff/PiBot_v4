@@ -1,3 +1,4 @@
+from lidar import lidar
 
 
 class Robot:
@@ -41,11 +42,20 @@ class Robot:
 
     def start(self):
         while True:
-            dist_cm = self.tfluna.read_distance() * 100
-            if dist_cm > 800:
+            env = lidar.scan_360(self.top_stepper, self.tfluna)
+            max_dist = 0
+            max_angle = 0
+            for i in env:
+                if i[2] > max_dist:
+                    max_dist = i[2]
+                    max_angle = i[3]
+            dist_cm = max_dist
+            # dist_cm = self.tfluna.read_distance() * 100
+            if dist_cm > 1000:
                 continue
-            print("Dist:", dist_cm)
+            print("Dist:", dist_cm, "at angle:", max_angle)
             if dist_cm > 40:
+                self.turn_degree(max_angle, True)
                 self.drive_cm(int(dist_cm/1.1), True)
             else:
                 self.drive_cm(20, False)
