@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import math
 
+from code.sensors.TFLUNA import TFLuna
+
 
 def get_coord(angle, distance, log=False):
     if log:
@@ -9,6 +11,12 @@ def get_coord(angle, distance, log=False):
         print('>>>cos(', angle, ') =', math.cos(angle),
               '*', distance, '=', math.cos(angle)*distance)
     return round(math.sin(angle)*distance, 2), round(math.cos(angle)*distance, 2)
+
+
+def scan_360_forth_and_back(stepper, tfluna):
+    env_map = scan_360(stepper, tfluna, True)
+    env_map += scan_360(stepper, tfluna, False)
+    return env_map
 
 
 def scan_360(stepper, tfluna, clockwise=True):
