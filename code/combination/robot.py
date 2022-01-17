@@ -42,7 +42,7 @@ class Robot:
 
     def start(self):
 
-        self.turn_degree(80, True)
+        self.turn_degree(360, True)
         exit()
 
         while True:

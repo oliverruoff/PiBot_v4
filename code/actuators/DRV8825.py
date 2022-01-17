@@ -116,7 +116,7 @@ class DRV8825:
         self.activate_stepper()
         steps = int(self.SPR/360*degree)
         # means 1/5 of the beginning steps will be ramp up phase and the last 1/5 of the steps is ramp down phase
-        ramp_size = 5
+        ramp_size = 4
         ramp_steps = steps / ramp_size
         max_delay = self.stepper_delay_seconds * 20
         delay = 0
