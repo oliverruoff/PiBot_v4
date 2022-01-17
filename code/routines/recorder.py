@@ -57,8 +57,8 @@ def play_movement(left_stepper, right_stepper, input_):
     if input_ == "w":
         left_stepper.set_direction_clockwise(False)
         right_stepper.set_direction_clockwise(True)
-        left_stepper.turn_stepper_angle(360, True)
-        right_stepper.turn_stepper_angle(360, False)
+        left_stepper.turn_stepper_angle(360, True, False, False)
+        right_stepper.turn_stepper_angle(360, False, False, False)
     elif input_ == "s":
         left_stepper.set_direction_clockwise(True)
         right_stepper.set_direction_clockwise(False)
@@ -67,8 +67,8 @@ def play_movement(left_stepper, right_stepper, input_):
     elif input_ == "a":
         left_stepper.set_direction_clockwise(True)
         right_stepper.set_direction_clockwise(True)
-        left_stepper.turn_stepper_angle(207, True)
-        right_stepper.turn_stepper_angle(207, False)
+        left_stepper.turn_stepper_angle(207, True, False, False)
+        right_stepper.turn_stepper_angle(207, False, False, False)
     elif input_ == "d":
         left_stepper.set_direction_clockwise(False)
         right_stepper.set_direction_clockwise(False)
@@ -77,13 +77,13 @@ def play_movement(left_stepper, right_stepper, input_):
     elif input_ == "u":
         left_stepper.set_direction_clockwise(False)
         right_stepper.set_direction_clockwise(True)
-        left_stepper.turn_stepper_angle(100, True)
-        right_stepper.turn_stepper_angle(100, False)
+        left_stepper.turn_stepper_angle(100, True, False, False)
+        right_stepper.turn_stepper_angle(100, False, False, False)
     elif input_ == "j":
         left_stepper.set_direction_clockwise(True)
         right_stepper.set_direction_clockwise(False)
-        left_stepper.turn_stepper_angle(100, True)
-        right_stepper.turn_stepper_angle(100, False)
+        left_stepper.turn_stepper_angle(100, True, False, False)
+        right_stepper.turn_stepper_angle(100, False, False, False)
     elif input_ == "h":
         left_stepper.set_direction_clockwise(True)
         right_stepper.set_direction_clockwise(True)
