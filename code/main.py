@@ -19,9 +19,9 @@ top_stepper = ULN2003.ULN2003(
 
 tf_luna = TFLUNA.TFLuna()
 
-recorder.record(left_stepper, right_stepper)
+# recorder.record(left_stepper, right_stepper)
 
-# print(lidar.scan_360(top_stepper, tf_luna))
+print(lidar.scan_360(top_stepper, tf_luna))
 
 #
 # while True:
