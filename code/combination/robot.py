@@ -43,7 +43,7 @@ class Robot:
         while True:
             dist = self.tfluna.read_distance() * 100
             print("Dist:", dist)
-            if dist < 40:
+            if dist > 40:
                 self.left_stepper.run_continuously()
                 self.right_stepper.run_continuously()
             else:
