@@ -22,9 +22,9 @@ tf_luna = TFLUNA.TFLuna()
 
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
 
-robo.start()
+# robo.start()
 
-# recorder.record(left_stepper, right_stepper)
+recorder.record(left_stepper, right_stepper)
 
 
 #print(lidar.scan_360(top_stepper, tf_luna))
