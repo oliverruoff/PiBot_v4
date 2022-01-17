@@ -14,7 +14,7 @@ class DRV8825:
         common bigger stepper motors.
         """
 
-    def __init__(self, DIR, STEP, SLP, steps_per_revolution, stepper_delay_seconds=.0005, gpio_mode=GPIO.BCM):
+    def __init__(self, DIR, STEP, SLP, steps_per_revolution, stepper_delay_seconds=.001, gpio_mode=GPIO.BCM):
         self.DIR = DIR
         self.STEP = STEP
         # If set to Low, there is no holding torque on the motor
