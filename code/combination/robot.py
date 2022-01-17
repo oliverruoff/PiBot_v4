@@ -11,7 +11,7 @@ class Robot:
         self.TYRE_CIRCUMFERENCE_CM = 28.9
         self.ROBOT_CIRCUMFERENCE_CM = 66.6
 
-    def drive_cm(self, cm, forward, ramp_up=False, ramp_down=False):
+    def drive_cm(self, cm, forward, ramp_up=True, ramp_down=True):
         if forward:
             self.left_stepper.set_direction_clockwise(False)
             self.right_stepper.set_direction_clockwise(True)
@@ -43,7 +43,7 @@ class Robot:
         while True:
             dist = self.tfluna.read_distance() * 100
             print("Dist:", dist)
-            if dist > 10:
-                self.drive_cm(5, True)
+            if dist > 20:
+                self.drive_cm(dist-10, True)
             else:
                 self.turn_degree(90, True)

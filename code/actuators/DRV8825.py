@@ -125,13 +125,10 @@ class DRV8825:
         for i in range(steps):
             if ramp_up:
                 if i < ramp_steps:
-                    print(i, "ramping up")
                     delay -= (1/ramp_steps) * max_delay
             if ramp_down:
                 if i > steps - ramp_steps:
-                    print(i, "ramping down")
                     delay += (1/ramp_steps) * max_delay
-            print('delay:', self.stepper_delay_seconds + delay)
             GPIO.output(self.STEP, GPIO.HIGH)
             sleep(self.stepper_delay_seconds + delay)
             GPIO.output(self.STEP, GPIO.LOW)
