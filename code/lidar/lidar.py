@@ -12,8 +12,8 @@ def get_coord(angle, distance, log=False):
 
 
 def scan_360(stepper, tfluna):
-    env_map = scan_360(stepper, tfluna, True)
-    env_map += scan_360(stepper, tfluna, False)
+    env_map = _scan_360(stepper, tfluna, True)
+    env_map += _scan_360(stepper, tfluna, False)
     return env_map
 
 
