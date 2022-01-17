@@ -76,7 +76,7 @@ class DRV8825:
         self.deactivate_stepper()
         self.pi.set_PWM_dutycycle(self.STEP, 0)
 
-    def set_direction(self, clockwise=True):
+    def set_direction_clockwise(self, clockwise=True):
         """Sets the spinning direction of the stepper motor to clockwise or
         counterclockwise.
 

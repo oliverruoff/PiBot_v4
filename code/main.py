@@ -4,6 +4,7 @@ from actuators import DRV8825, ULN2003
 from sensors import TFLUNA
 from routines import test_all, recorder
 from lidar import lidar
+from combination import robot
 
 import RPi.GPIO as GPIO
 
@@ -19,10 +20,14 @@ top_stepper = ULN2003.ULN2003(
 
 tf_luna = TFLUNA.TFLuna()
 
+robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
+
+robo.drive_cm(100, False)
+
 # recorder.record(left_stepper, right_stepper)
 
 
-print(lidar.scan_360(top_stepper, tf_luna))
+#print(lidar.scan_360(top_stepper, tf_luna))
 
 #
 # while True:

@@ -12,10 +12,11 @@ def get_coord(angle, distance, log=False):
 
 
 def scan_360(stepper, tfluna, clockwise=True):
-    _scan_360(stepper, tfluna, clockwise)
+    env_map = _scan_360(stepper, tfluna, clockwise)
     reverse = not clockwise
     stepper.set_direction(reverse)
     stepper.run_stepper(512)
+    return env_map
 
 
 def scan_360_forth_and_back(stepper, tfluna):

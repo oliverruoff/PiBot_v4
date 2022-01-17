@@ -48,7 +48,7 @@ class ULN2003:
                         self.stepper_pins[pin], HALFSTEP_SEQ[halfstep][pin])
                 time.sleep(stepper_delay)
 
-    def set_direction(self, clockwise):
+    def set_direction_clockwise(self, clockwise):
         """Sets the spinning direction of the stepper motor.
 
         Args:
