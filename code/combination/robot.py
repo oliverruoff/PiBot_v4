@@ -45,12 +45,10 @@ class Robot:
             print("Dist:", dist)
             if dist > 40:
                 self.left_stepper.set_direction_clockwise(False)
-                self.right_stepper.set_direction_clockwise(False)
+                self.right_stepper.set_direction_clockwise(True)
                 self.left_stepper.run_continuously()
                 self.right_stepper.run_continuously()
             else:
                 self.left_stepper.stop_continuous()
                 self.right_stepper.stop_continuous()
                 self.turn_degree(120, True)
-                self.left_stepper.set_direction_clockwise(False)
-                self.right_stepper.set_direction_clockwise(False)
