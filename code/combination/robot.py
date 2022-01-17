@@ -42,9 +42,11 @@ class Robot:
     def start(self):
         while True:
             dist_cm = self.tfluna.read_distance() * 100
+            if dist_cm > 800:
+                continue
             print("Dist:", dist_cm)
             if dist_cm > 40:
-                self.drive_cm(dist_cm-50, True)
+                self.drive_cm(int(dist_cm/1.1), True)
             else:
                 self.drive_cm(20, False)
                 self.turn_degree(120, True)
