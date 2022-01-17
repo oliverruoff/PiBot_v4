@@ -11,7 +11,7 @@ class Robot:
         self.TYRE_CIRCUMFERENCE_CM = 28.9
         self.ROBOT_CIRCUMFERENCE_CM = 66.6
 
-    def drive_cm(self, cm, forward):
+    def drive_cm(self, cm, forward, ramp_up=False, ramp_down=False):
         if forward:
             self.left_stepper.set_direction_clockwise(False)
             self.right_stepper.set_direction_clockwise(True)
@@ -19,10 +19,12 @@ class Robot:
             self.left_stepper.set_direction_clockwise(True)
             self.right_stepper.set_direction_clockwise(False)
         desired_angle = (cm / self.TYRE_CIRCUMFERENCE_CM) * 360
-        self.left_stepper.turn_stepper_angle(desired_angle, True)
-        self.right_stepper.turn_stepper_angle(desired_angle, False)
+        self.left_stepper.turn_stepper_angle(
+            desired_angle, True, ramp_up, ramp_down)
+        self.right_stepper.turn_stepper_angle(
+            desired_angle, False, ramp_up, ramp_down)
 
-    def turn_degree(self, degree, clockwise):
+    def turn_degree(self, degree, clockwise, ramp_up=True, ramp_down=True):
         if clockwise:
             self.left_stepper.set_direction_clockwise(False)
             self.right_stepper.set_direction_clockwise(False)
@@ -32,12 +34,15 @@ class Robot:
 
         desired_angle = (self.ROBOT_CIRCUMFERENCE_CM /
                          self.TYRE_CIRCUMFERENCE_CM) * degree
-        self.left_stepper.turn_stepper_angle(desired_angle, True)
-        self.right_stepper.turn_stepper_angle(desired_angle, False)
+        self.left_stepper.turn_stepper_angle(
+            desired_angle, True, ramp_up, ramp_down)
+        self.right_stepper.turn_stepper_angle(
+            desired_angle, False, ramp_up, ramp_down)
 
     def start(self):
         while True:
-            dist = self.tfluna.read_distance() / 100
+            dist = self.tfluna.read_distance()
+            print("Dist:", dist)
             if dist > 10:
                 self.drive_cm(5, True)
             else:

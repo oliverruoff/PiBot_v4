@@ -86,7 +86,7 @@ class DRV8825:
         self.direction = CW if clockwise else CCW
         GPIO.output(self.DIR, self.direction)
 
-    def turn_stepper_angle(self, degree, asynch):
+    def turn_stepper_angle(self, degree, asynch, ramp_up=True, ramp_down=True):
         """Turns the stepper for a precise angle. Can be called
         either synchronous or asynchronously.
 
@@ -98,7 +98,7 @@ class DRV8825:
         """
         if (asynch):
             thread = threading.Thread(
-                target=self._turn_stepper, args=([degree]), kwargs={})
+                target=self._turn_stepper, args=([degree, ramp_up, ramp_down]), kwargs={})
             thread.start()
         else:
             self._turn_stepper(degree)
