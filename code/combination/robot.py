@@ -34,3 +34,11 @@ class Robot:
                          self.TYRE_CIRCUMFERENCE_CM) * degree
         self.left_stepper.turn_stepper_angle(desired_angle, True)
         self.right_stepper.turn_stepper_angle(desired_angle, False)
+
+    def start(self):
+        while True:
+            dist = self.tfluna.read_distance() / 100
+            if dist > 10:
+                self.drive_cm(5, True)
+            else:
+                self.turn_degree(90, True)
