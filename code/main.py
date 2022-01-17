@@ -22,7 +22,7 @@ tf_luna = TFLUNA.TFLuna()
 # recorder.record(left_stepper, right_stepper)
 
 
-print(lidar.scan_360_forth_and_back(top_stepper, tf_luna))
+print(lidar.scan_360(top_stepper, tf_luna))
 
 #
 # while True:
