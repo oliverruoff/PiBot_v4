@@ -18,7 +18,7 @@ class Robot:
         else:
             self.left_stepper.set_direction_clockwise(True)
             self.right_stepper.set_direction_clockwise(False)
-        desired_angle = (cm / self.TYRE_CIRCUMFERENCE) * 360
+        desired_angle = (cm / self.TYRE_CIRCUMFERENCE_CM) * 360
         self.left_stepper.turn_stepper_angle(desired_angle, True)
         self.right_stepper.turn_stepper_angle(desired_angle, True)
 
