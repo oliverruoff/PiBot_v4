@@ -1,8 +1,6 @@
 import RPi.GPIO as GPIO
 import math
 
-from code.sensors.TFLUNA import TFLuna
-
 
 def get_coord(angle, distance, log=False):
     if log:
