@@ -46,13 +46,13 @@ class Robot:
             max_dist = 0
             max_angle = 0
             for i in env:
+                if i[2] > 800:
+                    continue
                 if i[2] > max_dist:
                     max_dist = i[2]
                     max_angle = i[3]
             dist_cm = max_dist
             # dist_cm = self.tfluna.read_distance() * 100
-            if dist_cm > 1000:
-                continue
             print("Dist:", dist_cm, "at angle:", max_angle)
             if dist_cm > 40:
                 self.turn_degree(max_angle, True)
