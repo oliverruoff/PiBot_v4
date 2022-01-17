@@ -43,7 +43,10 @@ class Robot:
         while True:
             dist = self.tfluna.read_distance() * 100
             print("Dist:", dist)
-            if dist > 40:
-                self.drive_cm(dist-30, True)
+            if dist < 40:
+                self.left_stepper.run_continuously()
+                self.right_stepper.run_continuously()
             else:
-                self.turn_degree(90, True)
+                self.left_stepper.stop_continuous()
+                self.right_stepper.stop_continuous()
+                self.turn_degree(120, True)
