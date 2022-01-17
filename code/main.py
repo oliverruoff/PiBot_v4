@@ -22,7 +22,7 @@ tf_luna = TFLUNA.TFLuna()
 
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
 
-robo.drive_cm(100, False)
+robo.turn_degree(180, True)
 
 # recorder.record(left_stepper, right_stepper)
 
