@@ -101,7 +101,7 @@ class DRV8825:
                 target=self._turn_stepper, args=([degree, ramp_up, ramp_down]), kwargs={})
             thread.start()
         else:
-            self._turn_stepper(degree)
+            self._turn_stepper(degree, ramp_up, ramp_down)
 
     def _turn_stepper(self, degree, ramp_up=True, ramp_down=True):
         """This function is for turning the stepper for a precise angle.
