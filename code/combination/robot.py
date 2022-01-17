@@ -44,6 +44,8 @@ class Robot:
             dist = self.tfluna.read_distance() * 100
             print("Dist:", dist)
             if dist > 40:
+                self.left_stepper.set_direction_clockwise(False)
+                self.right_stepper.set_direction_clockwise(False)
                 self.left_stepper.run_continuously()
                 self.right_stepper.run_continuously()
             else:
