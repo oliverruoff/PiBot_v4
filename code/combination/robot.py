@@ -41,7 +41,7 @@ class Robot:
 
     def start(self):
         while True:
-            dist = self.tfluna.read_distance()
+            dist = self.tfluna.read_distance() * 100
             print("Dist:", dist)
             if dist > 10:
                 self.drive_cm(5, True)
