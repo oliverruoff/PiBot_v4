@@ -11,7 +11,14 @@ def get_coord(angle, distance, log=False):
     return round(math.sin(angle)*distance, 2), round(math.cos(angle)*distance, 2)
 
 
-def scan_360(stepper, tfluna):
+def scan_360(stepper, tfluna, clockwise=True):
+    _scan_360(stepper, tfluna, clockwise)
+    reverse = not clockwise
+    stepper.set_direction(reverse)
+    stepper.run_stepper(512)
+
+
+def scan_360_forth_and_back(stepper, tfluna):
     env_map = _scan_360(stepper, tfluna, True)
     env_map += _scan_360(stepper, tfluna, False)
     return env_map
