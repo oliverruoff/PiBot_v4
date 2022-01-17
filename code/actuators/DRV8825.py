@@ -118,7 +118,7 @@ class DRV8825:
         # means 1/5 of the beginning steps will be ramp up phase and the last 1/5 of the steps is ramp down phase
         ramp_size = 4
         ramp_steps = steps / ramp_size
-        max_delay = self.stepper_delay_seconds * 20
+        max_delay = self.stepper_delay_seconds * 10
         delay = 0
         if ramp_up:
             delay = max_delay
