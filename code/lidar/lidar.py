@@ -26,7 +26,7 @@ def scan_360_forth_and_back(stepper, tfluna):
 
 
 def _scan_360(stepper, tfluna, clockwise=True):
-    stepper.set_direction(clockwise)
+    stepper.set_direction_clockwise(clockwise)
     env_map = []
     angle = 0 if clockwise else 360
     for i in range(512):
