@@ -16,7 +16,7 @@ right_stepper = DRV8825.DRV8825(
     DIR=12, STEP=25, SLP=24, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
 top_stepper = ULN2003.ULN2003(
-    IN1=21, IN2=20, IN3=16, IN4=26, gpio_mode=GPIO.BCM)
+    IN1=13, IN2=26, IN3=19, IN4=6, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
 tf_luna = TFLUNA.TFLuna()
 
@@ -24,10 +24,10 @@ robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
 
 # robo.start()
 
-recorder.record(left_stepper, right_stepper)
+# recorder.record(left_stepper, right_stepper)
 
 
-#print(lidar.scan_360(top_stepper, tf_luna))
+print(lidar.scan_360(top_stepper, tf_luna))
 
 #
 # while True:

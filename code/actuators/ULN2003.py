@@ -19,7 +19,7 @@ class ULN2003:
     small, low budget stepper motors.
     """
 
-    def __init__(self, IN1, IN2, IN3, IN4, gpio_mode=GPIO.BCM):
+    def __init__(self, IN1, IN2, IN3, IN4, steps_per_revolution, gpio_mode=GPIO.BCM):
         GPIO.setmode(gpio_mode)
         self.stepper_pins = [IN1, IN2, IN3, IN4]
 
@@ -29,6 +29,7 @@ class ULN2003:
             GPIO.output(pin, 0)
 
         self.direction_clockwise = True
+        self.steps_per_revolution = steps_per_revolution
 
     def run_stepper(self, steps, stepper_delay=0.001):
         """Runs the stepper motor for the given number of steps.
@@ -62,4 +63,4 @@ class ULN2003:
         Args:
             angle_in_degree (int): Angle in degree, on how much the stepper will be turned.
         """
-        self.run_stepper(int(512/360 * angle_in_degree))
+        self.run_stepper(int(self.steps_per_revolution/360 * angle_in_degree))
