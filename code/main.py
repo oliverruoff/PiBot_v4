@@ -20,20 +20,20 @@ top_stepper = ULN2003.ULN2003(
 
 tf_luna = TFLUNA.TFLuna()
 
-top_stepper.set_direction_clockwise(True)
-top_stepper.turn_stepper_angle(angle_in_degree=360, halfstep=False)
-top_stepper.set_direction_clockwise(False)
-top_stepper.turn_stepper_angle(angle_in_degree=360, halfstep=False)
+# top_stepper.set_direction_clockwise(True)
+#top_stepper.turn_stepper_angle(angle_in_degree=360, halfstep=False)
+# top_stepper.set_direction_clockwise(False)
+#top_stepper.turn_stepper_angle(angle_in_degree=360, halfstep=False)
 
 
-robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
+# robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
 
 # robo.start()
 
 # recorder.record(left_stepper, right_stepper)
 
 
-# print(lidar.scan_360(top_stepper, tf_luna))
+print(lidar.scan_360(top_stepper, tf_luna))
 
 #
 # while True:
