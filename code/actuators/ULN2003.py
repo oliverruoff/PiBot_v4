@@ -1,4 +1,3 @@
-from msilib import sequence
 import RPi.GPIO as GPIO
 import time
 
