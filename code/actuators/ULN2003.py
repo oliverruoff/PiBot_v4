@@ -49,7 +49,7 @@ class ULN2003:
             halfstep {bool} -- Defines wheather to use half steps or fullsteps (default: {True})
         """
 
-        steps = steps / 4
+        steps = int(steps / 4)
 
         if halfstep:
             seq = HALFSTEP_SEQ
