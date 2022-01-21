@@ -49,8 +49,6 @@ class ULN2003:
             halfstep {bool} -- Defines wheather to use half steps or fullsteps (default: {True})
         """
 
-        print("Steps to drive:", steps)
-
         if halfstep:
             seq = HALFSTEP_SEQ
             step_range = range(
@@ -59,6 +57,9 @@ class ULN2003:
             seq = FULLSTEP_SEQ
             step_range = range(
                 4) if not self.direction_clockwise else list(reversed(range(4)))
+
+        print('Seq:', seq, 'Range:', step_range)
+
         for _ in range(steps):
             for step in step_range:
                 for pin in range(4):
