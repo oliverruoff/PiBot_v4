@@ -80,7 +80,7 @@ class ULN2003:
         Keyword Arguments:
             halfstep {bool} -- Defines wheather to use half steps or fullsteps (default: {True})
         """
-        divisor = self.steps_per_revolution * \
+        steps = self.steps_per_revolution * \
             2 if halfstep else self.steps_per_revolution
-        self.run_stepper(int(self.steps_per_revolution/360 *
+        self.run_stepper(int(steps/360 *
                          angle_in_degree), halfstep=halfstep)
