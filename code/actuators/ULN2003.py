@@ -49,6 +49,8 @@ class ULN2003:
             halfstep {bool} -- Defines wheather to use half steps or fullsteps (default: {True})
         """
 
+        print("Steps to drive:", steps)
+
         if halfstep:
             seq = HALFSTEP_SEQ
             step_range = range(
