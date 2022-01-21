@@ -49,8 +49,6 @@ class ULN2003:
             halfstep {bool} -- Defines wheather to use half steps or fullsteps (default: {True})
         """
 
-        steps = int(steps / 4)
-
         if halfstep:
             seq = HALFSTEP_SEQ
             step_range = range(
@@ -88,4 +86,4 @@ class ULN2003:
         steps = self.steps_per_revolution * \
             2 if halfstep else self.steps_per_revolution
         self.run_stepper(int(steps/360 *
-                         angle_in_degree), halfstep=halfstep)
+                         angle_in_degree/4), halfstep=halfstep)
