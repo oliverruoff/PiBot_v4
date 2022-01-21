@@ -82,4 +82,5 @@ class ULN2003:
         """
         divisor = self.steps_per_revolution * \
             2 if halfstep else self.steps_per_revolution
-        self.run_stepper(int(self.steps_per_revolution/360 * angle_in_degree))
+        self.run_stepper(int(self.steps_per_revolution/360 *
+                         angle_in_degree), halfstep=halfstep)
