@@ -23,6 +23,11 @@ Also see [fritzing wiring](docs/PiBot_v4_wiring.fzz).
 
 ![Breadboard View](docs/wiring.png)
 
+## Stepper
+
+To connect the stepper motor to the driver and raspberry, refer to this [youtube video](https://www.youtube.com/watch?v=LUbhPKBL_IU&t=258s).  
+Don't miss to adjust the motor driver, so you don't fry your motor. (set current to max. 71% of max. motor current, in this case 1.5A --> driver current max. 1.065A (0.71 x 1.5). You should be fine with ~0.7A). --> For the smaller stepper which moves the lidar on the top, I used ~0.5A, since this stepper has an 1A rating.
+
 ## Hardware Used
 
 - Raspberry Pi Zero W
