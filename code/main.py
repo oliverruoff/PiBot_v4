@@ -16,7 +16,7 @@ right_stepper = DRV8825.DRV8825(
     DIR=12, STEP=25, SLP=24, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
 top_stepper = DRV8825.DRV8825(
-    DIR=12, STEP=25, SLP=24, steps_per_revolution=200, gpio_mode=GPIO.BCM)
+    DIR=6, STEP=26, SLP=13, RST=19, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
 tf_luna = TFLUNA.TFLuna()
 

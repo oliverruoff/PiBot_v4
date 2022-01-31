@@ -14,9 +14,10 @@ class DRV8825:
         common bigger stepper motors.
         """
 
-    def __init__(self, DIR, STEP, SLP, steps_per_revolution, stepper_delay_seconds=.002, gpio_mode=GPIO.BCM):
+    def __init__(self, DIR, STEP, SLP, steps_per_revolution, RST=None, stepper_delay_seconds=.002, gpio_mode=GPIO.BCM):
         self.DIR = DIR
         self.STEP = STEP
+        self.RST = RST
         # If set to Low, there is no holding torque on the motor
         self.SLP = SLP
         # Steps per Revolution (360 / 1.8) (1,8° per step (oruoff))
@@ -30,6 +31,10 @@ class DRV8825:
         self.direction = CW
 
         GPIO.setmode(gpio_mode)
+
+        if RST is not None:
+            GPIO.setup(self.RST, GPIO.OUT)
+            GPIO.output(self.RST, GPIO.HIGH)
 
         GPIO.setup(self.DIR, GPIO.OUT)
         GPIO.setup(self.STEP, GPIO.OUT)
