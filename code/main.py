@@ -1,6 +1,6 @@
 from time import sleep
 
-from actuators import DRV8825, ULN2003
+from actuators import DRV8825
 from sensors import TFLUNA
 from routines import test_all, recorder
 from lidar import lidar
