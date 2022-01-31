@@ -139,3 +139,11 @@ class DRV8825:
             GPIO.output(self.STEP, GPIO.LOW)
             sleep(self.stepper_delay_seconds + delay)
         self.deactivate_stepper()
+
+    def make_one_step(self):
+        self.activate_stepper()
+        GPIO.output(self.STEP, GPIO.HIGH)
+        sleep(self.stepper_delay_seconds)
+        GPIO.output(self.STEP, GPIO.LOW)
+        sleep(self.stepper_delay_seconds)
+        self.deactivate_stepper()
