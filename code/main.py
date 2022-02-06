@@ -36,6 +36,7 @@ tf_luna = TFLUNA.TFLuna()
 
 for _ in range(360):
     top_stepper.make_one_step()
+    left_stepper.make_one_step()
 
 # print(lidar.scan_360(top_stepper, tf_luna))
 
