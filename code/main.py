@@ -1,6 +1,6 @@
 from time import sleep
 
-from actuators import DRV8825
+from actuators import stepper
 from sensors import TFLUNA
 from routines import test_all, recorder
 from lidar import lidar
@@ -9,13 +9,13 @@ from combination import robot
 import RPi.GPIO as GPIO
 
 
-left_stepper = DRV8825.DRV8825(
+left_stepper = stepper.stepper(
     DIR=27, STEP=17, SLP=4, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
-right_stepper = DRV8825.DRV8825(
+right_stepper = stepper.stepper(
     DIR=12, STEP=25, SLP=24, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
-top_stepper = DRV8825.DRV8825(
+top_stepper = stepper.stepper(
     DIR=6, STEP=26, SLP=13, RST=19, steps_per_revolution=200, gpio_mode=GPIO.BCM)
 
 tf_luna = TFLUNA.TFLuna()

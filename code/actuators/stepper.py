@@ -9,7 +9,7 @@ CW = 1     # Clockwise Rotation
 CCW = 0    # Counterclockwise Rotation
 
 
-class DRV8825:
+class stepper:
     """This class is for handling the DRV8825 motor driver. E.g. to operate
         common bigger stepper motors.
         """
@@ -138,7 +138,6 @@ class DRV8825:
             sleep(self.stepper_delay_seconds + delay)
             GPIO.output(self.STEP, GPIO.LOW)
             sleep(self.stepper_delay_seconds + delay)
-        self.deactivate_stepper()
 
     def make_one_step(self):
         GPIO.output(self.STEP, GPIO.HIGH)
