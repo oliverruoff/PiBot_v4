@@ -38,10 +38,18 @@ left_stepper.deactivate_stepper()
 right_stepper.deactivate_stepper()
 
 top_stepper.activate_stepper()
-top_stepper.stepper_delay_seconds = 0.002
-top_stepper.turn_stepper_angle(360, False, False, False)
-top_stepper.set_direction_clockwise(False)
-top_stepper.turn_stepper_angle(360, False)
+while True:
+    a = input()
+    if a == "s":
+        top_stepper.make_one_step()
+    elif a == "c":
+        top_stepper.set_direction_clockwise(True)
+    elif a == "x":
+        top_stepper.set_direction_clockwise(False)
+    elif a == "r":
+        top_stepper.turn_stepper_angle(360, False, False, False)
+    elif a == "t":
+        top_stepper.turn_stepper_angle(360, False)
 
 
 # for _ in range(360):
