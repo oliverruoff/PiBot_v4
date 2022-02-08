@@ -32,9 +32,8 @@ def _scan_360(stepper, tfluna, clockwise=True):
     for _ in range(stepper.steps_per_revolution):
         distance = tfluna.read_distance() * 100  # converting to cm
         print('Measured distance:', distance)
-        for _ in range(4):
-            angle = angle + 360/stepper.steps_per_revolution if clockwise else angle - \
-                360/stepper.steps_per_revolution
+        angle = angle + 360/stepper.steps_per_revolution if clockwise else angle - \
+            360/stepper.steps_per_revolution
         print('Current angle:', angle)
         radians_angle = math.radians(angle)
         env_map.append(get_coord(radians_angle, distance) + (distance, angle))
