@@ -1,5 +1,4 @@
 from time import sleep
-from turtle import right
 
 from actuators import DRV8825
 from sensors import TFLUNA
