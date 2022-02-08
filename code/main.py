@@ -34,6 +34,8 @@ tf_luna = TFLUNA.TFLuna()
 
 # top_stepper.turn_stepper_angle(360, False, ramp_up=False, ramp_down=False)
 
+top_stepper.activate_stepper()
+left_stepper.activate_stepper()
 for _ in range(360):
     top_stepper.make_one_step()
     left_stepper.make_one_step()
