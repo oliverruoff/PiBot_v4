@@ -15,7 +15,7 @@ def scan_360(stepper, tfluna, clockwise=True):
     env_map = _scan_360(stepper, tfluna, clockwise)
     reverse = not clockwise
     stepper.set_direction_clockwise(reverse)
-    stepper.turn_stepper_angle(360)
+    stepper.turn_stepper_angle(360, False)
     return env_map
 
 
