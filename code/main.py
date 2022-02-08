@@ -34,17 +34,20 @@ tf_luna = TFLUNA.TFLuna()
 
 # top_stepper.turn_stepper_angle(360, False, ramp_up=False, ramp_down=False)
 
-top_stepper.activate_stepper()
-top_stepper.stepper_delay_seconds = 0.0005
-
 left_stepper.deactivate_stepper()
 right_stepper.deactivate_stepper()
+
+top_stepper.activate_stepper()
+top_stepper.stepper_delay_seconds = 0.002
+top_stepper.turn_stepper_angle(360, False, False, False)
+top_stepper.set_direction_clockwise(False)
+top_stepper.turn_stepper_angle(360, False)
 
 
 # for _ in range(360):
 #    top_stepper.make_one_step()
 
-print(lidar.scan_360(top_stepper, tf_luna))
+# print(lidar.scan_360(top_stepper, tf_luna))
 
 #
 # while True:
