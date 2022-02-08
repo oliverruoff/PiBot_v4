@@ -14,7 +14,7 @@ class stepper:
         common bigger stepper motors.
         """
 
-    def __init__(self, DIR, STEP, SLP, steps_per_revolution, RST=None, stepper_delay_seconds=.002, gpio_mode=GPIO.BCM):
+    def __init__(self, DIR, STEP, SLP, steps_per_revolution, RST=None, stepper_delay_seconds=.005, gpio_mode=GPIO.BCM):
         self.DIR = DIR
         self.STEP = STEP
         self.RST = RST
@@ -140,6 +140,8 @@ class stepper:
             sleep(self.stepper_delay_seconds + delay)
 
     def make_one_step(self):
+        """Makes exactly one full step.
+        """
         GPIO.output(self.STEP, GPIO.HIGH)
         sleep(self.stepper_delay_seconds)
         GPIO.output(self.STEP, GPIO.LOW)
