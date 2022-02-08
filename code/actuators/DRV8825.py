@@ -21,7 +21,7 @@ class DRV8825:
         # If set to Low, there is no holding torque on the motor
         self.SLP = SLP
         # Steps per Revolution (360 / 1.8) (1,8° per step (oruoff))
-        self.SPR = steps_per_revolution
+        self.steps_per_revolution = steps_per_revolution
 
         self.stepper_delay_seconds = stepper_delay_seconds
         self.gpio_mode = gpio_mode
@@ -119,7 +119,7 @@ class DRV8825:
             ramp_down (bool): Defines wheather the stepper should ramp down the movement.
         """
         self.activate_stepper()
-        steps = int(self.SPR/360*degree)
+        steps = int(self.steps_per_revolution/360*degree)
         # means 1/5 of the beginning steps will be ramp up phase and the last 1/5 of the steps is ramp down phase
         ramp_size = 4
         ramp_steps = steps / ramp_size
