@@ -8,6 +8,9 @@ from combination import robot
 
 import RPi.GPIO as GPIO
 
+####################################
+# Initializing sensors, motors, etc.
+####################################
 
 left_stepper = stepper.stepper(
     DIR=27, STEP=17, SLP=4, steps_per_revolution=200, gpio_mode=GPIO.BCM)
@@ -20,24 +23,6 @@ top_stepper = stepper.stepper(
 
 tf_luna = TFLUNA.TFLuna()
 
-# top_stepper.set_direction_clockwise(True)
-#top_stepper.turn_stepper_angle(angle_in_degree=360, halfstep=False)
-# top_stepper.set_direction_clockwise(False)
-#top_stepper.turn_stepper_angle(angle_in_degree=360, halfstep=False)
-
-
-# robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
-
-# robo.start()
-
-# recorder.record(left_stepper, right_stepper)
-
-# top_stepper.turn_stepper_angle(360, False, ramp_up=False, ramp_down=False)
-
-left_stepper.deactivate_stepper()
-right_stepper.deactivate_stepper()
-
-top_stepper.activate_stepper()
 while True:
     a = input("Input: ")
     if a == "1":
@@ -55,3 +40,8 @@ while True:
             top_stepper.make_one_step()
     elif a == "7":
         print(lidar.scan_360(top_stepper, tf_luna))
+    elif a == "8":
+        robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
+        robo.start()
+    elif a == "9":
+        recorder.record(left_stepper, right_stepper)

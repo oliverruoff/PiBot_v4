@@ -42,9 +42,6 @@ class Robot:
 
     def start(self):
 
-        self.turn_degree(360, True)
-        exit()
-
         while True:
             env = lidar.scan_360(self.top_stepper, self.tfluna)
             max_dist = 0
