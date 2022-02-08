@@ -1,4 +1,5 @@
 from time import sleep
+from turtle import right
 
 from actuators import DRV8825
 from sensors import TFLUNA
@@ -35,12 +36,16 @@ tf_luna = TFLUNA.TFLuna()
 # top_stepper.turn_stepper_angle(360, False, ramp_up=False, ramp_down=False)
 
 top_stepper.activate_stepper()
-left_stepper.activate_stepper()
-for _ in range(360):
-    top_stepper.make_one_step()
-    left_stepper.make_one_step()
+top_stepper.stepper_delay_seconds = 0.0005
 
-# print(lidar.scan_360(top_stepper, tf_luna))
+left_stepper.deactivate_stepper()
+right_stepper.deactivate_stepper()
+
+
+# for _ in range(360):
+#    top_stepper.make_one_step()
+
+print(lidar.scan_360(top_stepper, tf_luna))
 
 #
 # while True:
