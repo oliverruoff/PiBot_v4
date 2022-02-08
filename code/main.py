@@ -38,28 +38,20 @@ left_stepper.deactivate_stepper()
 right_stepper.deactivate_stepper()
 
 top_stepper.activate_stepper()
-# while True:
-#   a = input()
-#  if a == "s":
-#     top_stepper.make_one_step()
-# elif a == "c":
-#     top_stepper.set_direction_clockwise(True)
-# elif a == "x":
-#     top_stepper.set_direction_clockwise(False)
-# elif a == "r":
-#     top_stepper.turn_stepper_angle(360, False, False, False)
-# elif a == "t":
-#     top_stepper.turn_stepper_angle(360, False)
-
-
-for _ in range(360):
-    top_stepper.make_one_step()
-
-# print(lidar.scan_360(top_stepper, tf_luna))
-
-#
-# while True:
-#   tfluna_data = tf_luna.read_tfluna_data()
-#   print('TFLuna data --> Distance:',
-#         tfluna_data[0], '| Signal Strength:', tfluna_data[1], '| Sensor Temperatur:', tfluna_data[2])
-#   sleep(0.5)
+while True:
+    a = input("Input: ")
+    if a == "1":
+        top_stepper.make_one_step()
+    elif a == "2":
+        top_stepper.set_direction_clockwise(True)
+    elif a == "3":
+        top_stepper.set_direction_clockwise(False)
+    elif a == "4":
+        top_stepper.turn_stepper_angle(360, False, False, False)
+    elif a == "5":
+        top_stepper.turn_stepper_angle(360, False)
+    elif a == "6":
+        for _ in range(360):
+            top_stepper.make_one_step()
+    elif a == "7":
+        print(lidar.scan_360(top_stepper, tf_luna))
