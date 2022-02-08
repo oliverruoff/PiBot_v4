@@ -51,7 +51,7 @@ while True:
     elif a == "5":
         top_stepper.turn_stepper_angle(360, False)
     elif a == "6":
-        for _ in range(360):
+        for _ in range(200):
             top_stepper.make_one_step()
     elif a == "7":
         print(lidar.scan_360(top_stepper, tf_luna))
