@@ -91,7 +91,24 @@ class stepper:
         self.direction = CW if clockwise else CCW
         GPIO.output(self.DIR, self.direction)
 
-    def turn_stepper_angle(self, degree, asynch, ramp_up=True, ramp_down=True):
+    def turn_stepper_angle(self, degree, asynch, ramping=False):
+        """Turns the stepper for a precise angle. Can be called
+        either synchronous or asynchronously.
+
+        Args:
+            degree (int): The angle in degree, on how much the stepper will
+            rotate.
+            asynch (bool): Flag wheather this function (and therefore the motor), will turn
+            synchronously or asynchronously.
+        """
+        if (asynch):
+            thread = threading.Thread(
+                target=self._turn_stepper, args=([degree, ramping]), kwargs={})
+            thread.start()
+        else:
+            self._turn_stepper(degree, ramping)
+
+    def turn_stepper_angle_2(self, degree, asynch, ramp_up=True, ramp_down=True):
         """Turns the stepper for a precise angle. Can be called
         either synchronous or asynchronously.
 
@@ -108,7 +125,48 @@ class stepper:
         else:
             self._turn_stepper(degree, ramp_up, ramp_down)
 
-    def _turn_stepper(self, degree, ramp_up=True, ramp_down=True):
+    def _ramping_function(self, current_step, all_steps):
+        """Uses a defined exponential function to output the y value, which can be used
+        as delay for the stepper
+
+        Args:
+            current_step (int): The current step number (iteratively increased)
+            all_steps (int): The number of all steps for the current movement.
+
+        Returns:
+            float: The resulting y value, which can be used as stepper delay in seconds.
+        """
+        X_AXIS_SHIFT = -0.355
+        GRAPH_WIDTH = abs(2*X_AXIS_SHIFT)
+        EXPONENT = 4
+        PARABOLA_SHARPNESS = 8000
+        x = GRAPH_WIDTH/all_steps*current_step
+        y = PARABOLA_SHARPNESS*pow(x+X_AXIS_SHIFT, EXPONENT) * \
+            self.stepper_delay_seconds + self.stepper_delay_seconds
+        return y
+
+    def _turn_stepper(self, degree, ramping=False):
+        """This function is for turning the stepper for a precise angle.
+        This function should be called with the `turn_stepper_angle` function,
+        defining whether the function should run synchronously or asynchronously.
+
+        Args:
+            degree (int): The angle in degree, on how much the stepper will rotate.
+            ramping (bool): Defines wheather the stepper should ramp up and down its movement.
+        """
+        self.activate_stepper()
+        steps = int(self.steps_per_revolution/360*degree)
+        for i in range(steps):
+            if ramping:
+                delay = self._ramping_function(i, steps)
+            else:
+                delay = self.stepper_delay_seconds
+            GPIO.output(self.STEP, GPIO.HIGH)
+            sleep(delay)
+            GPIO.output(self.STEP, GPIO.LOW)
+            sleep(delay)
+
+    def _turn_stepper_2(self, degree, ramp_up=True, ramp_down=True):
         """This function is for turning the stepper for a precise angle.
         This function should be called with the `turn_stepper_angle` function,
         defining whether the function should run synchronously or asynchronously.

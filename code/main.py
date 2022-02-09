@@ -32,7 +32,7 @@ while True:
     elif a == "3":
         top_stepper.set_direction_clockwise(False)
     elif a == "4":
-        top_stepper.turn_stepper_angle(360, False, False, False)
+        top_stepper.turn_stepper_angle(360, False, False)
     elif a == "5":
         top_stepper.turn_stepper_angle(360, False)
     elif a == "6":
@@ -45,3 +45,11 @@ while True:
         robo.start()
     elif a == "9":
         recorder.record(left_stepper, right_stepper)
+    elif a == "10":
+        left_stepper.set_direction_clockwise(False)
+        right_stepper.set_direction_clockwise(True)
+        left_stepper.turn_stepper_angle_2(360, True, False, False)
+        right_stepper.turn_stepper_angle_2(360, False, False, False)
+    elif a == "11":
+        robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
+        robo.drive_cm(100, True, True)
