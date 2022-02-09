@@ -120,10 +120,10 @@ class stepper:
         """
         if (asynch):
             thread = threading.Thread(
-                target=self._turn_stepper, args=([degree, ramp_up, ramp_down]), kwargs={})
+                target=self._turn_stepper_2, args=([degree, ramp_up, ramp_down]), kwargs={})
             thread.start()
         else:
-            self._turn_stepper(degree, ramp_up, ramp_down)
+            self._turn_stepper_2(degree, ramp_up, ramp_down)
 
     def _ramping_function(self, current_step, all_steps):
         """Uses a defined exponential function to output the y value, which can be used
