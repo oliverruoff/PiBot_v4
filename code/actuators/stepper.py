@@ -135,10 +135,10 @@ class stepper:
         Returns:
             float: The resulting y value, which can be used as stepper delay in seconds.
         """
-        X_AXIS_SHIFT = -0.027
+        X_AXIS_SHIFT = -0.043
         GRAPH_WIDTH = abs(2*X_AXIS_SHIFT)
-        EXPONENT = 1.6
-        PARABOLA_SHARPNESS = 3000
+        EXPONENT = 2
+        PARABOLA_SHARPNESS = 5000
         x = GRAPH_WIDTH/all_steps*current_step
         y = PARABOLA_SHARPNESS*pow(x+X_AXIS_SHIFT, EXPONENT) * \
             self.stepper_delay_seconds + self.stepper_delay_seconds
