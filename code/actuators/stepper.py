@@ -138,7 +138,7 @@ class stepper:
         X_AXIS_SHIFT = -0.008
         GRAPH_WIDTH = abs(2*X_AXIS_SHIFT)
         EXPONENT = 2
-        PARABOLA_SHARPNESS = 100000
+        PARABOLA_SHARPNESS = 15000
         x = GRAPH_WIDTH/all_steps*current_step
         y = PARABOLA_SHARPNESS*pow(x+X_AXIS_SHIFT, EXPONENT) * \
             self.stepper_delay_seconds + self.stepper_delay_seconds
