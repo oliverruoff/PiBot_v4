@@ -48,3 +48,6 @@ while True:
     elif a == "10":
         robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
         robo.drive_cm(100, True, True)
+    elif a == "11":
+        robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
+        robo.turn_degree(360, True)
