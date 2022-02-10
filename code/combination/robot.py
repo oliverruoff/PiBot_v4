@@ -10,7 +10,7 @@ class Robot:
         self.tfluna = tfluna
 
         self.TYRE_CIRCUMFERENCE_CM = 28.9
-        self.ROBOT_CIRCUMFERENCE_CM = 59.7
+        self.ROBOT_CIRCUMFERENCE_CM = 56.7
 
     def drive_cm(self, cm, forward, ramping=True):
         if forward:
