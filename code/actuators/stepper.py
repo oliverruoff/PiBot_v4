@@ -200,7 +200,7 @@ class stepper:
     def make_one_step(self):
         """Makes exactly one full step.
         """
-        print('Making one step.')
+        self.activate_stepper()
         GPIO.output(self.STEP, GPIO.HIGH)
         sleep(self.stepper_delay_seconds)
         GPIO.output(self.STEP, GPIO.LOW)
