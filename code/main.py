@@ -46,10 +46,5 @@ while True:
     elif a == "9":
         recorder.record(left_stepper, right_stepper)
     elif a == "10":
-        left_stepper.set_direction_clockwise(False)
-        right_stepper.set_direction_clockwise(True)
-        left_stepper.turn_stepper_angle_2(1000, True, True, True)
-        right_stepper.turn_stepper_angle_2(1000, False, True, True)
-    elif a == "11":
         robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
         robo.drive_cm(100, True, True)

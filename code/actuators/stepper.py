@@ -107,23 +107,6 @@ class stepper:
         else:
             self._turn_stepper(degree, ramping)
 
-    def turn_stepper_angle_2(self, degree, asynch, ramp_up=True, ramp_down=True):
-        """Turns the stepper for a precise angle. Can be called
-        either synchronous or asynchronously.
-
-        Args:
-            degree (int): The angle in degree, on how much the stepper will
-            rotate.
-            asynch (bool): Flag wheather this function (and therefore the motor), will turn
-            synchronously or asynchronously.
-        """
-        if (asynch):
-            thread = threading.Thread(
-                target=self._turn_stepper_2, args=([degree, ramp_up, ramp_down]), kwargs={})
-            thread.start()
-        else:
-            self._turn_stepper_2(degree, ramp_up, ramp_down)
-
     def _ramping_function(self, current_step, all_steps):
         """Uses a defined exponential function to output the y value, which can be used
         as delay for the stepper
@@ -165,37 +148,6 @@ class stepper:
             sleep(delay)
             GPIO.output(self.STEP, GPIO.LOW)
             sleep(delay)
-
-    def _turn_stepper_2(self, degree, ramp_up=True, ramp_down=True):
-        """This function is for turning the stepper for a precise angle.
-        This function should be called with the `turn_stepper_angle` function,
-        defining whether the function should run synchronously or asynchronously.
-
-        Args:
-            degree (int): The angle in degree, on how much the stepper will rotate.
-            ramp_up (bool): Defines wheather the stepper should ramp up the movement.
-            ramp_down (bool): Defines wheather the stepper should ramp down the movement.
-        """
-        self.activate_stepper()
-        steps = int(self.steps_per_revolution/360*degree)
-        # means 1/5 of the beginning steps will be ramp up phase and the last 1/5 of the steps is ramp down phase
-        ramp_size = 4
-        ramp_steps = steps / ramp_size
-        max_delay = self.stepper_delay_seconds * 10
-        delay = 0
-        if ramp_up:
-            delay = max_delay
-        for i in range(steps):
-            if ramp_up:
-                if i < ramp_steps:
-                    delay -= (1/ramp_steps) * max_delay
-            if ramp_down:
-                if i > steps - ramp_steps:
-                    delay += (1/ramp_steps) * max_delay
-            GPIO.output(self.STEP, GPIO.HIGH)
-            sleep(self.stepper_delay_seconds + delay)
-            GPIO.output(self.STEP, GPIO.LOW)
-            sleep(self.stepper_delay_seconds + delay)
 
     def make_one_step(self):
         """Makes exactly one full step.
