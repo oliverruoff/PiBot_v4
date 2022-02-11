@@ -39,7 +39,7 @@ while True:
         for _ in range(200):
             top_stepper.make_one_step()
     elif a == "7":
-        print(lidar.scan_360(top_stepper, tf_luna))
+        print(lidar.scan_360_forth_and_back(top_stepper, tf_luna))
     elif a == "8":
         robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
         robo.start()
