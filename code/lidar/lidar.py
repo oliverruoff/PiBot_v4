@@ -20,6 +20,15 @@ def scan_360(stepper, tfluna, clockwise=True):
 
 
 def scan_360_forth_and_back(stepper, tfluna):
+    """Generates a list with coordinates in cm, distance and angle.
+
+    Args:
+        stepper (stepper): stepper object from actuators.stepper
+        tfluna (tfluna): tfluna object from sensors.tfluna
+
+    Returns:
+        list: List containing x, y, distance, angle
+    """
     env_map = _scan_360(stepper, tfluna, True)
     env_map += _scan_360(stepper, tfluna, False)
     return env_map
