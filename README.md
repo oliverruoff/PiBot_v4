@@ -3,9 +3,17 @@ A small roboter based on a raspberry pi zero w, using lidar for locating.
 
 ![Picture](docs/3d_real.png)
 
-## First scans with the lidar
+## Results
 
-![lidar test](docs/lidar_test.png)
+First single mapping with single 360 scan:  
+  
+![lidar test](docs/lidar_test.png)  
+  
+"Manual" mapping results of six double 360 scans stitched together  
+(ground truth map grey in the background):    
+
+![mapping comparison](code/flat_mapping_test/mapping_comparison_2.png)
+
 ## Setup
 
 - Install python packages from requirements.txt

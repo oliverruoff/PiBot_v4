@@ -12,7 +12,27 @@ After postprocessing (translating) the scanned points and stitching them togethe
 
 ## Measurement points
 
+>Note: The robot is facing the bottom of the map
+
 ![flat with points](flat.png)
 
-(1) 0, 0
-(2) 
+1.      (0, 0)  
+1.      (0, -358)       // +0, -358
+1.      (0, -671)       // +0, -313
+1.      (-333, -671)    // -333, +0
+1.      (-333, -358)    // +0, +313
+1.      (-333, 0)       // +0, +358
+
+## Results
+
+Here the results of the approaches are listed.
+
+### Manual movement approach
+
+Comparison of the created point cloud map and the ground truth map:  
+  
+![mapping comparison 1](mapping_comparison_1.png)  
+  
+Comparison of created point cloud map and ground truth map with scaling aligned:  
+  
+![mapping comparison 2](mapping_comparison_2.png)
