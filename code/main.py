@@ -41,14 +41,7 @@ while True:
         for _ in range(200):
             top_stepper.make_one_step()
     elif a == "7":
-        map_1 = lidar.scan_360_forth_and_back(top_stepper, tf_luna)
-        robo.drive_cm(cm=20, forward=True, ramping=True)
-        map_2 = lidar.scan_360_forth_and_back(top_stepper, tf_luna)
-
-        map_2 = [(i[0], i[1]+20) for i in map_2]
-
-        print(map_1+map_2)
-
+        print(lidar.scan_360_forth_and_back(top_stepper, tf_luna))
     elif a == "8":
 
         robo.start()
