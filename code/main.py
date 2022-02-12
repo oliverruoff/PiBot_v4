@@ -64,3 +64,12 @@ while True:
         robo.turn_degree(300, True, True)
     elif a == "17":
         robo.turn_degree(int(inp[1]), True, True)
+    elif a == "18":
+        robo.drive_cm(80, forward=True, ramping=True)
+        robo.turn_degree(90, clockwise=False, ramping=False)
+        robo.drive_cm(50, forward=True, ramping=True)
+        robo.turn_degree(90, clockwise=True, ramping=False)
+        robo.drive_cm(50, forward=True, ramping=True)
+        robo.turn_degree(90, clockwise=False, ramping=False)
+        robo.drive_cm(300, forward=True, ramping=True)
+        robo.turn_degree(360, clockwise=False, ramping=False)
