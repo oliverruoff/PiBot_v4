@@ -42,8 +42,7 @@ class Robot:
         self.right_stepper.turn_stepper_angle(
             desired_angle, False, ramping)
 
-    def start(self):
-
+    def max_distance_routine(self):
         while True:
             env = lidar.scan_360(self.top_stepper, self.tfluna)
             max_dist = 0
@@ -63,3 +62,11 @@ class Robot:
             else:
                 self.drive_cm(20, False)
                 self.turn_degree(120, True)
+
+    def start(self):
+        while True:
+            dist = self.tfluna.read_distance()
+            if dist > 30:
+                self.drive_cm(cm=10, forward=True, ramping=True)
+            else:
+                self.turn_degree(degree=45, clockwise=True, ramping=True)
