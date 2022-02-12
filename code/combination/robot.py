@@ -26,7 +26,7 @@ class Robot:
             desired_angle, False, ramping)
 
     def turn_degree(self, degree, clockwise, ramping=True):
-        if not clockwise:
+        if clockwise:
             self.left_stepper.set_direction_clockwise(False)
             self.right_stepper.set_direction_clockwise(False)
         else:
