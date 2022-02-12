@@ -1,3 +1,4 @@
+from this import d
 from lidar import lidar
 
 
@@ -66,7 +67,22 @@ class Robot:
     def start(self):
         self.top_stepper.activate_stepper()
         while True:
-            dist_cm = self.tfluna.read_distance() * 100
+            distances = []
+            self.top_stepper.set_direction_clockwise(False)
+            for _ in range(25):
+                self.top_stepper.make_one_step()
+                distances.append(self.tfluna.read_distance() * 100)
+            self.top_stepper.set_direction_clockwise(True)
+            for _ in range(25):
+                self.top_stepper.make_one_step()
+            for _ in range(25):
+                self.top_stepper.make_one_step()
+                distances.append(self.tfluna.read_distance() * 100)
+            self.top_stepper.set_direction_clockwise(False)
+            for _ in range(25):
+                self.top_stepper.make_one_step()
+            dist_cm = min(distances)
+            distances = []
             if dist_cm > 30:
                 self.drive_cm(cm=10, forward=True, ramping=True)
             else:
