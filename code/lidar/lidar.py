@@ -61,7 +61,7 @@ class lidar:
         self.top_stepper.set_direction_clockwise(clockwise)
         env_map = []
         angle = 0 if clockwise else 360
-        steps = self.top_stepper.steps_per_revolution / 360 * degree
+        steps = int(self.top_stepper.steps_per_revolution / 360 * degree)
         for _ in range(steps):
             distance = self.tfluna.read_tfluna_data()
             print('Measured distance:', distance)
