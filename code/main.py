@@ -32,7 +32,7 @@ while True:
     if a == "1":
         top_stepper.make_one_step()
     elif a == "2":
-        # toggline top_stepper direction
+        # toggle top_stepper direction
         top_stepper.set_direction_clockwise(
             not top_stepper.is_direction_clockwise())
     elif a == "3":
@@ -51,5 +51,7 @@ while True:
         robo.start()
     elif a == "8":
         print(tfluna.read_tfluna_data())
+    elif a == "9":
+        print(top_stepper.is_direction_clockwise())
     else:
         print("Command not recognized!")

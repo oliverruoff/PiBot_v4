@@ -15,8 +15,13 @@ class Robot:
         self.TYRE_CIRCUMFERENCE_CM = 28.9
         self.ROBOT_CIRCUMFERENCE_CM = 60.3
         self.TURNING_ERROR_MULTIPLIER = 1.083  # manually determined
+        self.TOP_STEPPER_CALIBRATION_DISTANCE_CM = 3
+        self.TOP_STEPPER_CALIBRATION_OFFSET = 50
 
         self.lidar = lidar.lidar(top_stepper=top_stepper, tfluna=tfluna)
+
+        # calibrating top_stepper (lidar) --> Bringing it to 0 position.
+        self.calibrate_top_stepper()
 
     def drive_cm(self, cm, forward, ramping=True):
         if not forward:
@@ -68,31 +73,22 @@ class Robot:
                 self.drive_cm(20, False)
                 self.turn_degree(120, True)
 
-    def look_left_right(self):
-        self.top_stepper.activate_stepper()
-        while True:
-            distances = []
-            self.top_stepper.set_direction_clockwise(False)
-            for _ in range(25):
-                self.top_stepper.make_one_step()
-                distances.append(self.tfluna.read_distance() * 100)
-            self.top_stepper.set_direction_clockwise(True)
-            for _ in range(25):
-                self.top_stepper.make_one_step()
-            for _ in range(25):
-                self.top_stepper.make_one_step()
-                distances.append(self.tfluna.read_distance() * 100)
-            self.top_stepper.set_direction_clockwise(False)
-            for _ in range(25):
-                self.top_stepper.make_one_step()
-            distances = [i for i in distances if i != 0]
-            dist_cm = min(distances)
-            print('MIN DISTANCE: ', dist_cm)
-            distances = []
-            if dist_cm > 40:
-                self.drive_cm(cm=dist_cm-30, forward=True, ramping=True)
+    def calibrate_top_stepper(self):
+        """Setting the top stepper (lidar) to position 0, facing forwards, using the calibration pen.
+        """
+        print('Calibrating lidar.')
+        self.top_stepper.set_direction_clockwise(clockwise=False)
+        calibrated = False
+        while not calibrated:
+            distance = self.tfluna.read_distance()
+            if distance < self.TOP_STEPPER_CALIBRATION_DISTANCE_CM:
+                self.top_stepper.set_direction_clockwise(clockwise=True)
+                for _ in range(self.TOP_STEPPER_CALIBRATION_OFFSET):
+                    self.top_stepper.make_one_step()
+                calibrated = True
             else:
-                self.turn_degree(degree=45, clockwise=True, ramping=True)
+                self.top_stepper.make_one_step()
+        print('Lidar calibrated!')
 
     def start(self):
         self.top_stepper.activate_stepper()
