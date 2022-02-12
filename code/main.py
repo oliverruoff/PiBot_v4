@@ -1,3 +1,4 @@
+from functools import total_ordering
 from time import sleep
 
 from actuators import stepper
@@ -61,3 +62,5 @@ while True:
         robo.turn_degree(100, True, True)
     elif a == "16":
         robo.turn_degree(300, True, True)
+    elif a == "17":
+        robo.turn_degree(420, True, True)
