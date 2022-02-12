@@ -2,7 +2,7 @@ from functools import total_ordering
 from time import sleep
 
 from actuators import stepper
-from sensors import TFLUNA
+from sensors import tfluna
 from routines import test_all, recorder
 from lidar import lidar
 from combination import robot
@@ -22,7 +22,7 @@ right_stepper = stepper.stepper(
 top_stepper = stepper.stepper(
     DIR=6, STEP=26, SLP=13, RST=19, steps_per_revolution=200, stepper_delay_seconds=0.005, gpio_mode=GPIO.BCM)
 
-tf_luna = TFLUNA.TFLuna()
+tf_luna = tfluna.TFLuna()
 
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
 

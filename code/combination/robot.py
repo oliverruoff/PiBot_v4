@@ -1,4 +1,3 @@
-from this import d
 from lidar import lidar
 
 
@@ -10,9 +9,14 @@ class Robot:
         self.top_stepper = top_stepper
         self.tfluna = tfluna
 
+        self.position_X = 0
+        self.position_Y = 0
+
         self.TYRE_CIRCUMFERENCE_CM = 28.9
         self.ROBOT_CIRCUMFERENCE_CM = 60.3
         self.TURNING_ERROR_MULTIPLIER = 1.083  # manually determined
+
+        self.lidar = lidar.lidar(top_stepper=top_stepper, tfluna=tfluna)
 
     def drive_cm(self, cm, forward, ramping=True):
         if not forward:
@@ -64,7 +68,7 @@ class Robot:
                 self.drive_cm(20, False)
                 self.turn_degree(120, True)
 
-    def start(self):
+    def look_left_right(self):
         self.top_stepper.activate_stepper()
         while True:
             distances = []
@@ -82,6 +86,19 @@ class Robot:
             for _ in range(25):
                 self.top_stepper.make_one_step()
             distances = [i for i in distances if i != 0]
+            dist_cm = min(distances)
+            print('MIN DISTANCE: ', dist_cm)
+            distances = []
+            if dist_cm > 40:
+                self.drive_cm(cm=dist_cm-30, forward=True, ramping=True)
+            else:
+                self.turn_degree(degree=45, clockwise=True, ramping=True)
+
+    def start(self):
+        self.top_stepper.activate_stepper()
+        while True:
+            env_map = self.lidar.scan_angle_both_directions(degree=45)
+            distances = [i[2] for i in env_map]
             dist_cm = min(distances)
             print('MIN DISTANCE: ', dist_cm)
             distances = []
