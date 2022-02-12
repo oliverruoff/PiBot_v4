@@ -97,7 +97,7 @@ class Robot:
     def start(self):
         self.top_stepper.activate_stepper()
         while True:
-            env_map = self.lidar.scan_angle_both_directions(degree=45)
+            env_map = self.lidar.scan_angle_to_left_and_right(degree=45)
             distances = [i[2] for i in env_map]
             dist_cm = min(distances)
             print('MIN DISTANCE: ', dist_cm)

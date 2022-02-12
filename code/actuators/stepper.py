@@ -90,6 +90,14 @@ class stepper:
         self.direction = CW if clockwise else CCW
         GPIO.output(self.DIR, self.direction)
 
+    def is_direction_clockwise(self):
+        """Returns True if the current direction set is clockwise, else False.
+
+        Returns:
+            bool: True if clockwise, else False.
+        """
+        return bool(self.direction)
+
     def turn_stepper_angle(self, degree, asynch, ramping=False):
         """Turns the stepper for a precise angle. Can be called
         either synchronous or asynchronously.

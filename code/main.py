@@ -32,44 +32,24 @@ while True:
     if a == "1":
         top_stepper.make_one_step()
     elif a == "2":
-        top_stepper.set_direction_clockwise(True)
+        # toggline top_stepper direction
+        top_stepper.set_direction_clockwise(
+            not top_stepper.is_direction_clockwise())
     elif a == "3":
-        top_stepper.set_direction_clockwise(False)
+        # drive top_stepper certain angle
+        top_stepper.turn_stepper_angle(
+            int(inp[1]), asynch=False, ramping=False)
     elif a == "4":
+        # drive robot certain distance in cm
         robo.drive_cm(int(inp[1]), bool(inp[2]))
     elif a == "5":
+        # turn robot certain angle in degree
         robo.turn_degree(int(inp[1]), bool(inp[2]))
     elif a == "6":
-        for _ in range(200):
-            top_stepper.make_one_step()
-    elif a == "7":
-        print(lidar.scan_360_forth_and_back(top_stepper, tfluna))
-    elif a == "8":
-        robo.start()
-    elif a == "9":
         recorder.record(left_stepper, right_stepper)
-    elif a == "10":
-        robo.drive_cm(100, True, True)
-    elif a == "11":
-        robo.turn_degree(360, clockwise=True, ramping=False)
-    elif a == "12":
-        robo.turn_degree(1, True, True)
-    elif a == "13":
-        robo.turn_degree(5, True, True)
-    elif a == "14":
-        robo.turn_degree(10, True, True)
-    elif a == "15":
-        robo.turn_degree(100, True, True)
-    elif a == "16":
-        robo.turn_degree(300, True, True)
-    elif a == "17":
-        robo.turn_degree(int(inp[1]), True, True)
-    elif a == "18":
-        robo.drive_cm(80, forward=True, ramping=True)
-        robo.turn_degree(90, clockwise=False, ramping=True)
-        robo.drive_cm(50, forward=True, ramping=True)
-        robo.turn_degree(90, clockwise=True, ramping=True)
-        robo.drive_cm(50, forward=True, ramping=True)
-        robo.turn_degree(90, clockwise=False, ramping=True)
-        robo.drive_cm(300, forward=True, ramping=True)
-        robo.turn_degree(360, clockwise=False, ramping=True)
+    elif a == "7":
+        robo.start()
+    elif a == "8":
+        print(tfluna.read_tfluna_data())
+    else:
+        print("Command not recognized!")
