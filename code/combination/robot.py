@@ -82,6 +82,7 @@ class Robot:
             for _ in range(25):
                 self.top_stepper.make_one_step()
             dist_cm = min(distances)
+            print('MIN DISTANCE: ', dist_cm)
             distances = []
             if dist_cm > 30:
                 self.drive_cm(cm=10, forward=True, ramping=True)
