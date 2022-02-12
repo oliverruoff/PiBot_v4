@@ -64,6 +64,7 @@ class Robot:
                 self.turn_degree(120, True)
 
     def start(self):
+        self.top_stepper.activate_stepper()
         while True:
             dist_cm = self.tfluna.read_distance() * 100
             if dist_cm > 30:
