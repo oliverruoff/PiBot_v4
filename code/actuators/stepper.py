@@ -141,7 +141,6 @@ class stepper:
         for i in range(steps):
             if ramping:
                 delay = self._ramping_function(i, steps)
-                print('i:', i, 'delay:', delay)
             else:
                 delay = self.stepper_delay_seconds
             GPIO.output(self.STEP, GPIO.HIGH)
