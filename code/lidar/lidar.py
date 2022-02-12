@@ -51,7 +51,7 @@ class lidar:
             degree (int): The angle in degree, the sensor should scan.
 
         Returns:
-            list: List containing x, y, distance, angle
+            list: List containing x, y, distance, strength, temperature, angle
         """
         env_map = self._scan_angle(degree=degree, clockwise=True)
         env_map += self._scan_angle(degree=degree, clockwise=False)
@@ -63,13 +63,14 @@ class lidar:
         angle = 0 if clockwise else 360
         steps = int(self.top_stepper.steps_per_revolution / 360 * degree)
         for _ in range(steps):
-            distance = self.tfluna.read_tfluna_data()
+            tfluna_data = self.tfluna.read_tfluna_data()
+            distance = tfluna_data[0]
             print('Measured distance:', distance)
             angle = angle + 360/self.top_stepper.steps_per_revolution if clockwise else angle - \
                 360/self.top_stepper.steps_per_revolution
             print('Current angle:', angle)
             radians_angle = math.radians(angle)
             env_map.append(
-                self.get_coord(radians_angle, distance) + (distance, angle))
+                self.get_coord(radians_angle, distance) + (distance, tfluna_data[1], tfluna_data[2], angle))
             self.top_stepper.make_one_step()
         return env_map
