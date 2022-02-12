@@ -51,3 +51,13 @@ while True:
         robo.drive_cm(100, True, True)
     elif a == "11":
         robo.turn_degree(360, clockwise=True, ramping=False)
+    elif a == "12":
+        robo.turn_degree(1, True, True)
+    elif a == "13":
+        robo.turn_degree(5, True, True)
+    elif a == "14":
+        robo.turn_degree(10, True, True)
+    elif a == "15":
+        robo.turn_degree(100, True, True)
+    elif a == "16":
+        robo.turn_degree(300, True, True)
