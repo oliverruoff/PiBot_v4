@@ -13,10 +13,10 @@ import RPi.GPIO as GPIO
 ####################################
 
 left_stepper = stepper.stepper(
-    DIR=27, STEP=17, SLP=4, steps_per_revolution=200, stepper_delay_seconds=0.0005, gpio_mode=GPIO.BCM)
+    DIR=27, STEP=17, SLP=4, steps_per_revolution=200, stepper_delay_seconds=0.01, gpio_mode=GPIO.BCM)
 
 right_stepper = stepper.stepper(
-    DIR=12, STEP=25, SLP=24, steps_per_revolution=200, stepper_delay_seconds=0.0005, gpio_mode=GPIO.BCM)
+    DIR=12, STEP=25, SLP=24, steps_per_revolution=200, stepper_delay_seconds=0.01, gpio_mode=GPIO.BCM)
 
 top_stepper = stepper.stepper(
     DIR=6, STEP=26, SLP=13, RST=19, steps_per_revolution=200, stepper_delay_seconds=0.005, gpio_mode=GPIO.BCM)
@@ -50,4 +50,4 @@ while True:
     elif a == "10":
         robo.drive_cm(100, True, True)
     elif a == "11":
-        robo.turn_degree(360, clockwise=True, ramping=True)
+        robo.turn_degree(360, clockwise=True, ramping=False)
