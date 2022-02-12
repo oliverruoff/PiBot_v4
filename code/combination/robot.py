@@ -11,6 +11,7 @@ class Robot:
 
         self.TYRE_CIRCUMFERENCE_CM = 28.9
         self.ROBOT_CIRCUMFERENCE_CM = 60.3
+        self.TURNING_ERROR_MULTIPLIER = 1.083  # manually determined
 
     def drive_cm(self, cm, forward, ramping=True):
         if not forward:
@@ -34,7 +35,7 @@ class Robot:
             self.right_stepper.set_direction_clockwise(True)
 
         desired_angle = (self.ROBOT_CIRCUMFERENCE_CM /
-                         self.TYRE_CIRCUMFERENCE_CM) * degree
+                         self.TYRE_CIRCUMFERENCE_CM) * degree * self.TURNING_ERROR_MULTIPLIER
         self.left_stepper.turn_stepper_angle(
             desired_angle, True, ramping)
         self.right_stepper.turn_stepper_angle(
