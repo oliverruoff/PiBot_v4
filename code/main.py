@@ -63,4 +63,4 @@ while True:
     elif a == "16":
         robo.turn_degree(300, True, True)
     elif a == "17":
-        robo.turn_degree(inp[1], True, True)
+        robo.turn_degree(int(inp[1]), True, True)
