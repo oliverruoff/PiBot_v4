@@ -26,7 +26,8 @@ tf_luna = TFLUNA.TFLuna()
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
 
 while True:
-    a = input("Input: ")
+    inp = input("Input: "). split(" ")
+    a = inp[0]
     if a == "1":
         top_stepper.make_one_step()
     elif a == "2":
@@ -34,16 +35,15 @@ while True:
     elif a == "3":
         top_stepper.set_direction_clockwise(False)
     elif a == "4":
-        top_stepper.turn_stepper_angle(360, False, False)
+        robo.drive_cm(inp[1], inp[2])
     elif a == "5":
-        top_stepper.turn_stepper_angle(360, False)
+        robo.turn_degree(inp[1], inp[2])
     elif a == "6":
         for _ in range(200):
             top_stepper.make_one_step()
     elif a == "7":
         print(lidar.scan_360_forth_and_back(top_stepper, tf_luna))
     elif a == "8":
-
         robo.start()
     elif a == "9":
         recorder.record(left_stepper, right_stepper)

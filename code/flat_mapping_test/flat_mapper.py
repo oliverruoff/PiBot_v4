@@ -43,5 +43,8 @@ for idx, p_map in enumerate(point_maps):
 x = [x[0]for x in flat_map if x[0] > -800 and x[0] < 800]
 y = [y[1]for y in flat_map if y[0] > -800 and y[0] < 800]
 
+plt.xlim([-1100, 300])
+plt.ylim([-1100, 300])
+
 plt.scatter(x, y)
 plt.show()

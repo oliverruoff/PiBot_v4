@@ -13,7 +13,7 @@ class Robot:
         self.ROBOT_CIRCUMFERENCE_CM = 56.7
 
     def drive_cm(self, cm, forward, ramping=True):
-        if forward:
+        if not forward:
             self.left_stepper.set_direction_clockwise(False)
             self.right_stepper.set_direction_clockwise(True)
         else:
@@ -26,7 +26,7 @@ class Robot:
             desired_angle, False, ramping)
 
     def turn_degree(self, degree, clockwise, ramping=True):
-        if clockwise:
+        if not clockwise:
             self.left_stepper.set_direction_clockwise(False)
             self.right_stepper.set_direction_clockwise(False)
         else:
