@@ -35,9 +35,9 @@ while True:
     elif a == "3":
         top_stepper.set_direction_clockwise(False)
     elif a == "4":
-        robo.drive_cm(inp[1], inp[2])
+        robo.drive_cm(int(inp[1]), bool(inp[2]))
     elif a == "5":
-        robo.turn_degree(inp[1], inp[2])
+        robo.turn_degree(bool(inp[1]), bool(inp[2]))
     elif a == "6":
         for _ in range(200):
             top_stepper.make_one_step()
