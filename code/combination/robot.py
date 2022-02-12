@@ -81,6 +81,7 @@ class Robot:
             self.top_stepper.set_direction_clockwise(False)
             for _ in range(25):
                 self.top_stepper.make_one_step()
+            distances = [i for i in distances if i != 0]
             dist_cm = min(distances)
             print('MIN DISTANCE: ', dist_cm)
             distances = []
