@@ -85,7 +85,7 @@ class Robot:
             dist_cm = min(distances)
             print('MIN DISTANCE: ', dist_cm)
             distances = []
-            if dist_cm > 30:
-                self.drive_cm(cm=10, forward=True, ramping=True)
+            if dist_cm > 40:
+                self.drive_cm(cm=dist_cm-30, forward=True, ramping=True)
             else:
                 self.turn_degree(degree=45, clockwise=True, ramping=True)
