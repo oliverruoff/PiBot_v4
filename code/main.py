@@ -22,9 +22,9 @@ right_stepper = stepper.stepper(
 top_stepper = stepper.stepper(
     DIR=6, STEP=26, SLP=13, RST=19, steps_per_revolution=200, stepper_delay_seconds=0.005, gpio_mode=GPIO.BCM)
 
-tf_luna = tfluna.TFLuna()
+tfluna = tfluna.TFLuna()
 
-robo = robot.Robot(left_stepper, right_stepper, top_stepper, tf_luna)
+robo = robot.Robot(left_stepper, right_stepper, top_stepper, tfluna)
 
 while True:
     inp = input("Input: "). split(" ")
@@ -43,7 +43,7 @@ while True:
         for _ in range(200):
             top_stepper.make_one_step()
     elif a == "7":
-        print(lidar.scan_360_forth_and_back(top_stepper, tf_luna))
+        print(lidar.scan_360_forth_and_back(top_stepper, tfluna))
     elif a == "8":
         robo.start()
     elif a == "9":
