@@ -5,7 +5,7 @@ from sensors import tfluna
 from routines import test_all, recorder
 from lidar import lidar
 from combination import robot
-from server import server
+from server import robo_server
 
 import RPi.GPIO as GPIO
 
@@ -26,7 +26,7 @@ tfluna = tfluna.TFLuna()
 
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tfluna)
 
-server.run_server()
+robo_server.start_server()
 
 while True:
     inp = input("Input: "). split(" ")
