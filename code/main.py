@@ -1,11 +1,11 @@
-from functools import total_ordering
-from time import sleep
+from multiprocessing import Process
 
 from actuators import stepper
 from sensors import tfluna
 from routines import test_all, recorder
 from lidar import lidar
 from combination import robot
+from server import server
 
 import RPi.GPIO as GPIO
 
@@ -25,6 +25,9 @@ top_stepper = stepper.stepper(
 tfluna = tfluna.TFLuna()
 
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tfluna)
+
+p = Process(target=server.start_server())
+p.start()
 
 while True:
     inp = input("Input: "). split(" ")

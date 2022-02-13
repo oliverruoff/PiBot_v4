@@ -31,5 +31,9 @@ def show_map():
     return html
 
 
-if __name__ == '__main__':
+def start_server():
     app.run(debug=True)
+
+
+if __name__ == '__main__':
+    start_server()
