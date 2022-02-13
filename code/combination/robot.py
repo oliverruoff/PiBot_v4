@@ -110,12 +110,17 @@ class Robot:
             print('MIN DISTANCE: ', dist_cm)
             distances = []
             if dist_cm > 40:
-                self.left_stepper.set_direction_clockwise(False)
+                self.left_stepper.set_direction_clockwise(True)
                 self.right_stepper.set_direction_clockwise(True)
                 self.left_stepper.run_continuously()
                 self.right_stepper.run_continuously()
-                while self.lidar.read_distance() > 40:
-                    time.sleep(0.1)
+                while True:
+                    dist = self.lidar.read_distance()
+                    print('Distance in front of me:', dist)
+                    if dist > 40:
+                        time.sleep(0.1)
+                    else:
+                        break
                 self.left_stepper.stop_continuous()
                 self.right_stepper.stop_continuous()
                 # self.drive_cm(cm=dist_cm-30, forward=True, ramping=True)
