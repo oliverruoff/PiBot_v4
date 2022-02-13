@@ -75,19 +75,25 @@ class Robot:
 
     def calibrate_top_stepper(self):
         """Setting the top stepper (lidar) to position 0, facing forwards, using the calibration pen.
+        Since there are sometimes very small error readings, two consecutive readings have to be small. 
         """
         print('Calibrating lidar.')
         self.top_stepper.set_direction_clockwise(clockwise=False)
         calibrated = False
+        first_trigger = False
         while not calibrated:
             distance = self.tfluna.read_distance()
             print('Measured calibration distance:', distance)
             if distance < self.TOP_STEPPER_CALIBRATION_DISTANCE_CM:
-                self.top_stepper.set_direction_clockwise(clockwise=True)
-                for _ in range(self.TOP_STEPPER_CALIBRATION_OFFSET):
-                    self.top_stepper.make_one_step()
-                calibrated = True
+                if first_trigger:
+                    self.top_stepper.set_direction_clockwise(clockwise=True)
+                    for _ in range(self.TOP_STEPPER_CALIBRATION_OFFSET):
+                        self.top_stepper.make_one_step()
+                    calibrated = True
+                else:
+                    first_trigger = True
             else:
+                first_trigger = False
                 self.top_stepper.make_one_step()
         print('Lidar calibrated!')
 
