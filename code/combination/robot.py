@@ -1,4 +1,5 @@
 from lidar import lidar
+import time
 
 
 class Robot:
@@ -109,7 +110,15 @@ class Robot:
             print('MIN DISTANCE: ', dist_cm)
             distances = []
             if dist_cm > 40:
-                self.drive_cm(cm=dist_cm-30, forward=True, ramping=True)
+                self.left_stepper.set_direction_clockwise(False)
+                self.right_stepper.set_direction_clockwise(True)
+                self.left_stepper.run_continuously()
+                self.right_stepper.run_continuously()
+                while self.lidar.read_distance() > 40:
+                    time.sleep(0.1)
+                self.left_stepper.stop_continuous()
+                self.right_stepper.stop_continuous()
+                # self.drive_cm(cm=dist_cm-30, forward=True, ramping=True)
             else:
                 self.turn_degree(degree=45, clockwise=True, ramping=True)
                 print("My current heading:", self.heading)
