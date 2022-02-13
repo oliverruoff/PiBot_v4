@@ -26,8 +26,7 @@ tfluna = tfluna.TFLuna()
 
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tfluna)
 
-p = Process(target=server.start_server)
-p.start()
+server.run_server()
 
 while True:
     inp = input("Input: "). split(" ")
