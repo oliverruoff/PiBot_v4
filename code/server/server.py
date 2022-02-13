@@ -1,10 +1,13 @@
 from flask import Flask
+import threading
 import json
 import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 
 app = Flask(__name__)
+host_name = "0.0.0.0"
+port = 5000
 
 
 def read_string_from_file(file_name):
@@ -31,9 +34,10 @@ def show_map():
     return html
 
 
-def start_server(debug=False):
-    app.run(debug=debug)
+def start_server():
+    threading.Thread(target=lambda: app.run(
+        host=host_name, port=port, debug=True, use_reloader=False)).start()
 
 
 if __name__ == '__main__':
-    start_server(debug=True)
+    start_server()
