@@ -52,6 +52,8 @@ while True:
     elif a == "8":
         print(tfluna.read_tfluna_data())
     elif a == "9":
-        print(top_stepper.is_direction_clockwise())
+        top_stepper.deactivate_stepper()
+        left_stepper.deactivate_stepper()
+        right_stepper.deactivate_stepper()
     else:
         print("Command not recognized!")
