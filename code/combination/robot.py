@@ -87,8 +87,8 @@ class Robot:
         while not calibrated:
             distance = self.tfluna.read_distance()
             print('Measured calibration distance:', distance)
-            if distance < self.TOP_STEPPER_CALIBRATION_DISTANCE_CM:
-                if low_counter == 4:
+            if distance < self.TOP_STEPPER_CALIBRATION_DISTANCE_CM and distance > 0:
+                if low_counter == 2:
                     self.top_stepper.set_direction_clockwise(clockwise=True)
                     for _ in range(self.TOP_STEPPER_CALIBRATION_OFFSET):
                         self.top_stepper.make_one_step()
