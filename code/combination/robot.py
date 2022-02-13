@@ -112,3 +112,4 @@ class Robot:
                 self.drive_cm(cm=dist_cm-30, forward=True, ramping=True)
             else:
                 self.turn_degree(degree=45, clockwise=True, ramping=True)
+                print("My current heading:", self.heading)
