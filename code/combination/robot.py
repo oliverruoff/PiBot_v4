@@ -115,7 +115,7 @@ class Robot:
                 self.left_stepper.run_continuously()
                 self.right_stepper.run_continuously()
                 while True:
-                    dist = self.lidar.read_distance()
+                    dist = self.tfluna.read_distance()
                     print('Distance in front of me:', dist)
                     if dist > 40:
                         time.sleep(0.1)
