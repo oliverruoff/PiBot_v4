@@ -79,7 +79,7 @@ class lidar:
         for _ in range(steps):
             tfluna_data = self.tfluna.read_tfluna_data()
             distance = tfluna_data[0]
-            print('Measured distance:', distance)
+            # print('Measured distance:', distance)
             angle = angle + 360/self.top_stepper.steps_per_revolution if clockwise else angle - \
                 360/self.top_stepper.steps_per_revolution
             radians_angle = math.radians(angle)
