@@ -1,5 +1,3 @@
-from multiprocessing import Process
-
 from actuators import stepper
 from sensors import tfluna
 from routines import test_all, recorder
@@ -26,8 +24,7 @@ tfluna = tfluna.TFLuna()
 
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tfluna)
 
-p = Process(target=server.start_server())
-p.start()
+server.start_server()
 
 while True:
     inp = input("Input: "). split(" ")

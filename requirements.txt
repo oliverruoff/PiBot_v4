@@ -2,3 +2,5 @@ pigpio
 numpy
 serial
 pycpd
+flask
+matplotlib

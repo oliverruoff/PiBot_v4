@@ -52,6 +52,8 @@ class Robot:
             desired_angle, True, ramping)
         self.right_stepper.turn_stepper_angle(
             desired_angle, False, ramping)
+        self.heading = (self.heading +
+                        degree) % 360 if clockwise else (self.heading - degree) % -360
 
     def max_distance_routine(self):
         while True:
@@ -76,7 +78,7 @@ class Robot:
 
     def calibrate_top_stepper(self):
         """Setting the top stepper (lidar) to position 0, facing forwards, using the calibration pen.
-        Since there are sometimes very small error readings, two consecutive readings have to be small. 
+        Since there are sometimes very small error readings, two consecutive readings have to be small.
         """
         print('Calibrating lidar.')
         self.top_stepper.set_direction_clockwise(clockwise=False)
