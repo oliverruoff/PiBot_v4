@@ -17,7 +17,7 @@ class Robot:
         self.ROBOT_CIRCUMFERENCE_CM = 60.3             # manually determined
         self.TURNING_ERROR_MULTIPLIER = 1.083          # manually determined
         self.TOP_STEPPER_CALIBRATION_DISTANCE_CM = 10  # manually determined
-        self.TOP_STEPPER_CALIBRATION_OFFSET = 48       # manually determined
+        self.TOP_STEPPER_CALIBRATION_OFFSET = 50      # manually determined
 
         self.lidar = lidar.lidar(top_stepper=top_stepper, tfluna=tfluna)
 
