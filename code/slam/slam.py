@@ -88,6 +88,8 @@ class Slam:
         mode = 0  # 0 == check in positive direction // 1 == check in negative direction // 2 == stop
         termination_counter = 0
         while mode < 2:
+            print('Termination_counter:', termination_counter)
+            print('mode:', mode)
             new_offset = offset+step_size if mode == 0 else offset-step_size
             if for_x:
                 test_cloud = self.translate_cloud(moved_cloud, new_offset, 0)
