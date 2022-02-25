@@ -26,8 +26,8 @@ class Slam:
 
         angle = math.radians(angle)
 
-        ox, oy = origin
-        px, py = point
+        ox, oy = origin[:2]
+        px, py = point[:2]
 
         qx = ox + math.cos(angle) * (px - ox) - math.sin(angle) * (py - oy)
         qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
