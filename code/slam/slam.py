@@ -95,6 +95,7 @@ class Slam:
             else:
                 test_cloud = self.translate_cloud(cloud_2, 0, new_offset)
             new_score = self.score_2d_clouds(cloud_1, test_cloud)
+            print('New score:', new_score)
             if new_score < last_score and abs(new_score - last_score) > termination_score:
                 last_score = new_score
                 offset = new_offset
@@ -108,12 +109,15 @@ class Slam:
 
     def find_cloud_translation_and_rotation(self, cloud_1, cloud_2, termination_score=5):
 
+        print("Trying to get x_translation")
         x_translation = self.find_translation(
             cloud_1, cloud_2, for_x=True, termination_score=termination_score)
-
+        print("Result:", x_translation[0])
+        print("Trying to get y_translation")
         y_translation = self.find_translation(
             cloud_1, x_translation[1], for_x=False, termination_score=termination_score)
-
+        print("Result:", y_translation[0])
+        print("Trying to get rotation")
         rotation = self.find_rotation(
             cloud_1, y_translation[1], termination_score)
 
