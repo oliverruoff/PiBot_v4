@@ -82,7 +82,6 @@ class Slam:
         cloud_1_center = self._get_center_point_of_cloud(cloud_1)
         cloud_2_center = self._get_center_point_of_cloud(cloud_2)
         last_distance = self._2d_distance(cloud_1_center, cloud_2_center)
-        new_score = 0
         moved_cloud = cloud_2
 
         step_size = 1
@@ -93,11 +92,10 @@ class Slam:
             print('Offset:', offset)
             print('Termination_counter:', termination_counter)
             print('mode:', mode)
-            new_offset = offset+step_size if mode == 0 else offset-step_size
             if for_x:
-                test_cloud = self.translate_cloud(moved_cloud, new_offset, 0)
+                test_cloud = self.translate_cloud(moved_cloud, step_size, 0)
             else:
-                test_cloud = self.translate_cloud(moved_cloud, 0, new_offset)
+                test_cloud = self.translate_cloud(moved_cloud, 0, step_size)
 
             new_distance = self._2d_distance(
                 cloud_1_center, self._get_center_point_of_cloud(test_cloud))
@@ -106,12 +104,12 @@ class Slam:
             if new_distance < last_distance:
                 termination_counter = 0
                 last_distance = new_distance
-                offset = new_offset
                 moved_cloud = test_cloud
             else:
                 if termination_counter == termination_loops:
                     termination_counter = 0
                     mode += 1
+                offset = offset + step_size
                 termination_counter += 1
         return offset, moved_cloud
 
