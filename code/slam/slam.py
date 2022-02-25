@@ -100,6 +100,7 @@ class Slam:
             print('Last score:', last_score)
             print('New score:', new_score)
             if new_score < last_score:
+                termination_counter = 0
                 last_score = new_score
                 offset = new_offset
                 moved_cloud = test_cloud
