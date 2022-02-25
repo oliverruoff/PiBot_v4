@@ -5,6 +5,7 @@ from sensors import tfluna
 from routines import test_all, recorder
 from lidar import lidar
 from combination import robot
+from slam import slam
 
 import RPi.GPIO as GPIO
 
@@ -22,6 +23,7 @@ top_stepper = stepper.stepper(
     DIR=6, STEP=26, SLP=13, RST=19, steps_per_revolution=200, stepper_delay_seconds=0.005, gpio_mode=GPIO.BCM)
 
 tfluna = tfluna.TFLuna()
+slam_ = slam.Slam()
 
 robo = robot.Robot(left_stepper, right_stepper, top_stepper, tfluna)
 
@@ -54,5 +56,10 @@ while True:
         top_stepper.deactivate_stepper()
         left_stepper.deactivate_stepper()
         right_stepper.deactivate_stepper()
+    elif a == "10":
+        cloud_1 = robo.lidar.scan_angle_with_stepper_position_reset(360)
+        robo.drive_cm(50, forward=True)
+        cloud_2 = robo.lidar.scan_angle_with_stepper_position_reset(360)
+        print(slam_.find_cloud_translation_and_rotation(cloud_1, cloud_2)[:-1])
     else:
         print("Command not recognized!")

@@ -2,11 +2,16 @@ import RPi.GPIO as GPIO
 import math
 
 
-class lidar:
+class Lidar:
 
     def __init__(self, top_stepper, tfluna):
         self.top_stepper = top_stepper
         self.tfluna = tfluna
+
+        self.TOP_STEPPER_CALIBRATION_DISTANCE_CM = 10  # manually determined
+        self.TOP_STEPPER_CALIBRATION_OFFSET = 48       # manually determined
+
+        self.calibrate()
 
     def _get_coord(self, angle, distance):
         return round(math.sin(angle)*distance, 2), round(math.cos(angle)*distance, 2)
@@ -87,3 +92,28 @@ class lidar:
                 self._get_coord(radians_angle, distance) + (distance, tfluna_data[1], tfluna_data[2], angle))
             self.top_stepper.make_one_step()
         return env_map
+
+    def calibrate(self):
+        """Setting the top stepper (lidar) to position 0, facing forwards, using the calibration pen.
+        Since there are sometimes very small error readings, two consecutive readings have to be small.
+        """
+        print('Calibrating lidar.')
+        self.top_stepper.set_direction_clockwise(clockwise=False)
+        calibrated = False
+        low_counter = 0
+        while not calibrated:
+            distance = self.tfluna.read_distance()
+            print('Measured calibration distance:', distance)
+            if distance < self.TOP_STEPPER_CALIBRATION_DISTANCE_CM and distance > 0:
+                if low_counter == 2:
+                    self.top_stepper.set_direction_clockwise(
+                        clockwise=True)
+                    for _ in range(self.TOP_STEPPER_CALIBRATION_OFFSET):
+                        self.top_stepper.make_one_step()
+                    calibrated = True
+                else:
+                    low_counter += 1
+            else:
+                low_counter = 0
+                self.top_stepper.make_one_step()
+        print('Lidar calibrated!')
