@@ -73,6 +73,10 @@ while True:
         print(cloud_2)
     elif a == "12":
         cloud_1 = robo.lidar.scan_angle_with_stepper_position_reset(360)
-        print(slam_.score_2d_clouds(cloud_1, cloud_1))
+        robo.drive_cm(50, forward=True)
+        cloud_2 = robo.lidar.scan_angle_with_stepper_position_reset(360)
+        cloud_3 = slam_.translate_cloud(cloud_2, 0, -50)
+        print('Score 1:', slam_.score_2d_clouds(cloud_1, cloud_2))
+        print('Score 2:', slam_.score_2d_clouds(cloud_1, cloud_3))
     else:
         print("Command not recognized!")
