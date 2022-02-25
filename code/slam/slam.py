@@ -96,7 +96,7 @@ class Slam:
                 test_cloud = self.translate_cloud(cloud_2, 0, new_offset)
             new_score = self.score_2d_clouds(cloud_1, test_cloud)
             print('New score:', new_score)
-            if new_score < last_score and abs(new_score - last_score) > termination_score:
+            if new_score < last_score:
                 last_score = new_score
                 offset = new_offset
                 moved_cloud = test_cloud
