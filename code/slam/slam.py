@@ -82,6 +82,11 @@ class Slam:
         cloud_1_center = self._get_center_point_of_cloud(cloud_1)
         cloud_2_center = self._get_center_point_of_cloud(cloud_2)
         last_distance = self._2d_distance(cloud_1_center, cloud_2_center)
+
+        print('Initial c1 center:', cloud_1_center)
+        print('Initial c2 center:', cloud_2_center)
+        print('Initial last_distance:', last_distance)
+
         moved_cloud = cloud_2
 
         step_size = 1
