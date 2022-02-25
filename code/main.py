@@ -79,9 +79,9 @@ while True:
         print('Score 1:', slam_.score_2d_clouds(cloud_1, cloud_2))
         print('Score 2:', slam_.score_2d_clouds(cloud_1, cloud_3))
         print("____________________________________")
-        print(cloud_1)
+        print([(i[0], i[1]) for i in cloud_1])
         print("____________________________________")
-        print(cloud_2)
+        print([(i[0], i[1]) for i in cloud_2])
         print("____________________________________")
         print(cloud_3)
     else:
