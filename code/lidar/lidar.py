@@ -11,7 +11,7 @@ class Lidar:
         self.TOP_STEPPER_CALIBRATION_DISTANCE_CM = 10  # manually determined
         self.TOP_STEPPER_CALIBRATION_OFFSET = 48       # manually determined
 
-        self.calibrate()
+        # self.calibrate() # TODO: Make more stable
 
     def _get_coord(self, angle, distance):
         return round(math.sin(angle)*distance, 2), round(math.cos(angle)*distance, 2)
