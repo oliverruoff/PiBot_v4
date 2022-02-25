@@ -71,5 +71,8 @@ while True:
         print([(i[0], i[1]) for i in cloud_1])
         print("____________________________________")
         print(cloud_2)
+    elif a == "12":
+        cloud_1 = robo.lidar.scan_angle_with_stepper_position_reset(360)
+        slam_.score_2d_clouds(cloud_1, cloud_1)
     else:
         print("Command not recognized!")
