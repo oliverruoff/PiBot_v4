@@ -64,5 +64,12 @@ while True:
             :-1]
         print(moved_cloud)
         print(moved_cloud[-1])
+    elif a == "11":
+        cloud_1 = robo.lidar.scan_angle_with_stepper_position_reset(360)
+        cloud_2 = slam_.translate_cloud(cloud_1, 0, 50)
+        print("____________________________________")
+        print(cloud_1)
+        print("____________________________________")
+        print(cloud_2)
     else:
         print("Command not recognized!")
