@@ -46,7 +46,9 @@ class Slam:
         distances = []
         for i in range(min([len(cloud_1), len(cloud_2)])):
             distances.append(self._2d_distance(cloud_1[i], cloud_2[i]))
-        return sum(distances)/len(distances)
+        score = sum(distances)/len(distances)
+        print('Score:', score)  # TODO: Remove after debugging
+        return score
 
     def translate_cloud(self, point_cloud, x_offset, y_offset):
         """Translates a list containing 2D points in x and y direction.
