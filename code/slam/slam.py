@@ -112,11 +112,11 @@ class Slam:
         print("Trying to get x_translation")
         x_translation = self.find_translation(
             cloud_1, cloud_2, for_x=True, termination_score=termination_score)
-        print("Result:", x_translation[0])
+        print("X Result:", x_translation[0])
         print("Trying to get y_translation")
         y_translation = self.find_translation(
             cloud_1, x_translation[1], for_x=False, termination_score=termination_score)
-        print("Result:", y_translation[0])
+        print("Y Result:", y_translation[0])
         print("Trying to get rotation")
         rotation = self.find_rotation(
             cloud_1, y_translation[1], termination_score)
