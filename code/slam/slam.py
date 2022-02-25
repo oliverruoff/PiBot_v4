@@ -79,7 +79,9 @@ class Slam:
         return rotated_point_cloud
 
     def find_translation(self, cloud_1, cloud_2, for_x, termination_loops):
-        last_score = self.score_2d_clouds(cloud_1, cloud_2)
+        cloud_1_center = self._get_center_point_of_cloud(cloud_1)
+        cloud_2_center = self._get_center_point_of_cloud(cloud_2)
+        last_distance = self._2d_distance(cloud_1_center, cloud_2_center)
         new_score = 0
         moved_cloud = cloud_2
 
@@ -96,12 +98,14 @@ class Slam:
                 test_cloud = self.translate_cloud(moved_cloud, new_offset, 0)
             else:
                 test_cloud = self.translate_cloud(moved_cloud, 0, new_offset)
-            new_score = self.score_2d_clouds(cloud_1, test_cloud)
-            print('Last score:', last_score)
-            print('New score:', new_score)
-            if new_score < last_score:
+
+            new_distance = self._2d_distance(
+                cloud_1_center, self._get_center_point_of_cloud(test_cloud))
+            print('Last dist:', last_distance)
+            print('New dist:', new_distance)
+            if new_distance < last_distance:
                 termination_counter = 0
-                last_score = new_score
+                last_distance = new_distance
                 offset = new_offset
                 moved_cloud = test_cloud
             else:
