@@ -66,7 +66,7 @@ while True:
         print(moved_cloud[-1])
     elif a == "11":
         cloud_1 = robo.lidar.scan_angle_with_stepper_position_reset(360)
-        cloud_2 = slam_.translate_cloud(cloud_1, 100, 0)
+        cloud_2 = slam_.rotate_cloud(cloud_1, 90)
         print("____________________________________")
         print([(i[0], i[1]) for i in cloud_1])
         print("____________________________________")
