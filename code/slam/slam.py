@@ -106,6 +106,7 @@ class Slam:
                 moved_cloud = test_cloud
             else:
                 if termination_counter == termination_loops:
+                    termination_counter = 0
                     mode += 1
                 termination_counter += 1
         return offset, moved_cloud
