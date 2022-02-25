@@ -78,7 +78,7 @@ class Slam:
                 (self._rotate_point(origin, point, angle)))
         return rotated_point_cloud
 
-    def find_translation(self, cloud_1, cloud_2, for_x, termination_score):
+    def find_translation(self, cloud_1, cloud_2, for_x, termination_loops):
         last_score = self.score_2d_clouds(cloud_1, cloud_2)
         new_score = 0
         moved_cloud = cloud_2
@@ -86,6 +86,7 @@ class Slam:
         step_size = 1
         offset = 0
         mode = 0  # 0 == check in positive direction // 1 == check in negative direction // 2 == stop
+        termination_counter = 0
         while mode < 2:
             new_offset = offset+step_size if mode == 0 else offset-step_size
             if for_x:
@@ -100,7 +101,9 @@ class Slam:
                 offset = new_offset
                 moved_cloud = test_cloud
             else:
-                mode += 1
+                if termination_counter == termination_loops:
+                    mode += 1
+                termination_counter += 1
         return offset, moved_cloud
 
     def find_rotation(self, cloud_1, cloud_2, termination_score):
