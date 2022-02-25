@@ -106,21 +106,21 @@ class Slam:
                 termination_counter += 1
         return offset, moved_cloud
 
-    def find_rotation(self, cloud_1, cloud_2, termination_score):
+    def find_rotation(self, cloud_1, cloud_2, termination_loops):
         return 0, cloud_2  # TODO: Implement
 
-    def find_cloud_translation_and_rotation(self, cloud_1, cloud_2, termination_score=5):
+    def find_cloud_translation_and_rotation(self, cloud_1, cloud_2, termination_loops=5):
 
         print("Trying to get x_translation")
         x_translation = self.find_translation(
-            cloud_1, cloud_2, for_x=True, termination_score=termination_score)
+            cloud_1, cloud_2, for_x=True, termination_loops=termination_loops)
         print("X Result:", x_translation[0])
         print("Trying to get y_translation")
         y_translation = self.find_translation(
-            cloud_1, x_translation[1], for_x=False, termination_score=termination_score)
+            cloud_1, x_translation[1], for_x=False, termination_loops=termination_loops)
         print("Y Result:", y_translation[0])
         print("Trying to get rotation")
         rotation = self.find_rotation(
-            cloud_1, y_translation[1], termination_score)
+            cloud_1, y_translation[1], termination_loops)
 
         return x_translation[0], y_translation[0], rotation[0], rotation[1]
