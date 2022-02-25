@@ -60,6 +60,9 @@ while True:
         cloud_1 = robo.lidar.scan_angle_with_stepper_position_reset(360)
         robo.drive_cm(50, forward=True)
         cloud_2 = robo.lidar.scan_angle_with_stepper_position_reset(360)
-        print(slam_.find_cloud_translation_and_rotation(cloud_1, cloud_2)[:-1])
+        moved_cloud = slam_.find_cloud_translation_and_rotation(cloud_1, cloud_2)[
+            :-1]
+        print(moved_cloud)
+        print(moved_cloud[-1])
     else:
         print("Command not recognized!")
