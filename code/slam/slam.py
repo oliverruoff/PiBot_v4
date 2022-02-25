@@ -90,9 +90,9 @@ class Slam:
         while mode < 2:
             new_offset = offset+step_size if mode == 0 else offset-step_size
             if for_x:
-                test_cloud = self.translate_cloud(cloud_2, new_offset, 0)
+                test_cloud = self.translate_cloud(moved_cloud, new_offset, 0)
             else:
-                test_cloud = self.translate_cloud(cloud_2, 0, new_offset)
+                test_cloud = self.translate_cloud(moved_cloud, 0, new_offset)
             new_score = self.score_2d_clouds(cloud_1, test_cloud)
             print('Last score:', last_score)
             print('New score:', new_score)
